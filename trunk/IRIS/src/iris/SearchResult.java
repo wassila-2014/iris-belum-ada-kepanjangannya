@@ -14,8 +14,13 @@ package iris;
 import iris.IRSystem;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.xml.bind.annotation.XmlElementDecl.GLOBAL;
 
 /**
  *
@@ -27,8 +32,35 @@ public class SearchResult extends javax.swing.JFrame {
     public SearchResult() {
         showSearchResult();
         initComponents();
-        queryJLabel.setText('"'+GlobalVariable.queryString+'"');
-        numberJLabel.setText(""+ GlobalVariable.searchResultSimilarity.size());
+        InF_Table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        if (true) {
+            ListSelectionModel rowSM = InF_Table.getSelectionModel();
+            rowSM.addListSelectionListener(new ListSelectionListener() {
+                public void valueChanged(ListSelectionEvent e) {
+                    //Ignore extra messages.
+                    if (e.getValueIsAdjusting()) return;
+
+                    ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+                    if (lsm.isSelectionEmpty()) {
+                        System.out.println("No rows are selected.");
+                    } else {
+                        int selectedRow = lsm.getMinSelectionIndex();
+                        int docID = GlobalVariable.searchResultDocument.size() - selectedRow - 1;
+                        showContent(docID);
+        
+                    }
+                }
+            });
+        }
+        jLabel4.setText('"'+GlobalVariable.queryString+'"');
+        jLabel5.setText(""+ GlobalVariable.searchResultSimilarity.size());
+    }
+
+    void showContent(int selectedRow) {
+        String title = GlobalVariable.Doc.get(GlobalVariable.searchResultDocument.get(selectedRow)).title;
+        String content = GlobalVariable.Doc.get(GlobalVariable.searchResultDocument.get(selectedRow)).content;
+        
+        new SearchResultDetail(title, content).setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -48,8 +80,8 @@ public class SearchResult extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        queryJLabel = new javax.swing.JLabel();
-        numberJLabel = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,11 +134,9 @@ public class SearchResult extends javax.swing.JFrame {
 
         jLabel3.setText("Number Of Document Retrieved :");
 
-        queryJLabel.setText("Query");
-        queryJLabel.setName("queryJLabel"); // NOI18N
+        jLabel4.setText("Query");
 
-        numberJLabel.setText("Number");
-        numberJLabel.setName("numberJLabel"); // NOI18N
+        jLabel5.setText("Number");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -117,13 +147,13 @@ public class SearchResult extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numberJLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryJLabel)))
-                .addContainerGap(255, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,16 +161,16 @@ public class SearchResult extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(queryJLabel))
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(numberJLabel))
+                    .addComponent(jLabel5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        queryJLabel.getAccessibleContext().setAccessibleName("queryJLabel");
-        numberJLabel.getAccessibleContext().setAccessibleName("numberJLabel");
+        jLabel4.getAccessibleContext().setAccessibleName("queryJLabel");
+        jLabel5.getAccessibleContext().setAccessibleName("numberJLabel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,6 +212,7 @@ public class SearchResult extends javax.swing.JFrame {
 
     public final void showSearchResult(){
         model = new DefaultTableModel(new Object [][] {}, new String []{"Rank", "Judul", "Similarity"});
+
         List<Integer> resultDocument = (List<Integer>) GlobalVariable.searchResultDocument;
         List<Float> resultSimilarity = (List<Float>) GlobalVariable.searchResultSimilarity;
         int sizeResult = resultDocument.size();
@@ -196,11 +227,12 @@ public class SearchResult extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel numberJLabel;
-    private javax.swing.JLabel queryJLabel;
     // End of variables declaration//GEN-END:variables
     DefaultTableModel model;
+    
 }
