@@ -301,9 +301,9 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(dok_browse)
                             .addComponent(query_browse)
                             .addComponent(rel_browse))
-                        .addContainerGap(50, Short.MAX_VALUE))
+                        .addContainerGap(48, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, file_addr_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                         .addGap(9, 9, 9)
                         .addComponent(stopword_addr, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -366,6 +366,11 @@ public class GUI extends javax.swing.JFrame {
         jLabel11.setText("user query:");
 
         experiment_btn.setText("Experiment");
+        experiment_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                experiment_btnActionPerformed(evt);
+            }
+        });
 
         show_if_btn.setText("Show Inverted File");
         show_if_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -390,7 +395,7 @@ public class GUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(search_btn))
                             .addComponent(jLabel10))
-                        .addContainerGap(34, Short.MAX_VALUE))
+                        .addContainerGap(32, Short.MAX_VALUE))
                     .addGroup(action_panelLayout.createSequentialGroup()
                         .addComponent(indexing_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -487,9 +492,25 @@ public class GUI extends javax.swing.JFrame {
         irs.IndexDocument(dok_addr.getText(), dok_stemming.isSelected(), dok_stopword.isSelected(), stopword_addr.getText(), dok_idf.isSelected(), dok_tf.getSelectedIndex(), dok_normal.isSelected());
     }//GEN-LAST:event_indexing_btnActionPerformed
 
+<<<<<<< .mine
+    private void experiment_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_experiment_btnActionPerformed
+        // TODO :
+        //- Baca file queries, simpen ke variabel Q_test
+        
+	//- Baca file Relevance Judgement, simpen ke variabel RJ
+	//- Lakukan Retrieval Process (yang b.) untuk masing2 Query di Q_test
+	//- Cocokkan dengan RJ, tentukan banyaknya:
+	//	> dokumen yang diretrieve
+	//	> dokumen yang relevan
+	//	> dokumen yang relevan yang diretrieve
+	//- Itung NIAP nya
+        
+    }//GEN-LAST:event_experiment_btnActionPerformed
+=======
     private void query_idfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_query_idfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_query_idfActionPerformed
+>>>>>>> .r26
 
 
     /**

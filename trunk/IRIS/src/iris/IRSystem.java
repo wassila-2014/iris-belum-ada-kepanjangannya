@@ -337,6 +337,43 @@ public class IRSystem {
     }
 
     /*******************************************************************/
+    void BacaQuery(String filename) {
+        try {
+            Q_test = new HashMap<Integer, String> ();
+            FileInputStream fstream = new FileInputStream(filename);
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            int i = 0;
+            while ((strLine = br.readLine()) != null) {
+                Q_test.put(i,strLine.replaceAll("[^a-zA-Z]", ""));
+                ++i;
+            }
+            //Close the input stream
+            in.close();
+        } catch (Exception e) {//Catch exception if any
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+
+    void BacaRJ(String filename) {
+        try {
+            RJ = new Vector<RelJud>();
+            FileInputStream fstream = new FileInputStream(filename);
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            int i = 0;
+            String[] temp;
+            while ((strLine = br.readLine()) != null) {
+                temp = strLine.split(" ", 2);
+                RJ.add(new RelJud(Integer.parseInt(temp[0]),Integer.parseInt(temp[1])));
+            }
+            in.close();
+        } catch (Exception e) {//Catch exception if any
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
 
     /************************** EXPERIMENT *****************************/
     //lakukan Retrieve untuk semua Query di Q_test, lalu hitung NIAP masing2
