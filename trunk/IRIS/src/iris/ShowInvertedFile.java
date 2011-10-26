@@ -11,6 +11,9 @@
 
 package iris;
 
+import java.util.Vector;
+import javax.swing.JTable;
+
 /**
  *
  * @author ZAKIY FIRDAUS ALFIKR
@@ -21,6 +24,28 @@ public class ShowInvertedFile extends javax.swing.JFrame {
     public ShowInvertedFile(GUI parent) {
         initComponents();
         this.parent = parent;
+
+        String[] columnNames = {"Term", "Document", "TF", "Weight", "DF"};
+
+        Object[][] data = new Object[IRSystem.InF.size()][5];
+//        {
+//            {IRSystem.InF.get(0).term, IRSystem.InF.get(0).docID, IRSystem.InF.get(0).TF, IRSystem.InF.get(0).TFWeight, IRSystem.DF.get(IRSystem.InF.get(0).term)},
+//            {IRSystem.InF.get(0).term, IRSystem.InF.get(0).docID, IRSystem.InF.get(0).TF, IRSystem.InF.get(0).TFWeight, IRSystem.DF.get(IRSystem.InF.get(0).term)}
+//
+//        };
+
+        for (int i=0;i<IRSystem.InF.size();i++){
+            
+            Object[] row = {IRSystem.InF.get(i).term, IRSystem.InF.get(i).docID, IRSystem.InF.get(i).TF, IRSystem.InF.get(i).TFWeight, IRSystem.DF.get(IRSystem.InF.get(i).term)};
+            data[i] = row;
+        }
+
+        System.out.println("[" + IRSystem.InF.get(0).term +"] ["+ IRSystem.InF.get(0).docID+"] ["+ IRSystem.InF.get(0).TF+"] ["+ IRSystem.InF.get(0).TFWeight+"] ["+ IRSystem.DF.get(IRSystem.InF.get(0).term)+"]");
+        invfiletable.setModel(new javax.swing.table.DefaultTableModel(
+            data,
+            columnNames
+        ));
+
     }
 
     public ShowInvertedFile() {
@@ -40,13 +65,13 @@ public class ShowInvertedFile extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        invfiletable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        invfiletable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -57,11 +82,11 @@ public class ShowInvertedFile extends javax.swing.JFrame {
                 "Term", "Document", "TF", "Weight", "DF"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(invfiletable);
 
         jScrollPane1.setViewportView(jScrollPane2);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24));
         jLabel1.setText("Inverted File");
 
         BackButton.setText("Back");
@@ -117,10 +142,10 @@ public class ShowInvertedFile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
+    private javax.swing.JTable invfiletable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
 }
