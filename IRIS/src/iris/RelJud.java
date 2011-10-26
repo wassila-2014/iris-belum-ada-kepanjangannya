@@ -13,7 +13,12 @@ import java.util.Vector;
  */
 public class RelJud {
 
-    Integer queryID;
-    Integer docID;
-    
+    int queryID;
+    int docID;
+
+    public RelJud(int query, int doc)
+    {
+        this.queryID = query;
+        this.docID = doc;
+    }
 }
