@@ -498,15 +498,14 @@ public class GUI extends javax.swing.JFrame {
     private void experiment_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_experiment_btnActionPerformed
         // TODO :
         //- Baca file queries, simpen ke variabel Q_test
-        
-	//- Baca file Relevance Judgement, simpen ke variabel RJ
-	//- Lakukan Retrieval Process (yang b.) untuk masing2 Query di Q_test
-	//- Cocokkan dengan RJ, tentukan banyaknya:
-	//	> dokumen yang diretrieve
-	//	> dokumen yang relevan
-	//	> dokumen yang relevan yang diretrieve
-	//- Itung NIAP nya
-        
+        String address = query_addr.getText();
+        if (address == null)
+        {
+            JOptionPane.showMessageDialog(this, "Jangan lupa alamat query", "Message!", ERROR);
+        }
+        else
+        {
+        }
     }//GEN-LAST:event_experiment_btnActionPerformed
 
     private void query_idfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_query_idfActionPerformed
