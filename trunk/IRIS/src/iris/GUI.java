@@ -84,7 +84,7 @@ public class GUI extends javax.swing.JFrame {
 
         title_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36));
         jLabel1.setText("IRIS (belum ada kepanjangannya)");
 
         javax.swing.GroupLayout title_panelLayout = new javax.swing.GroupLayout(title_panel);
@@ -108,7 +108,7 @@ public class GUI extends javax.swing.JFrame {
 
         document_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Collection Document Indexing");
 
         jLabel3.setText("Dokumen Weighting:");
@@ -168,7 +168,7 @@ public class GUI extends javax.swing.JFrame {
 
         query_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel4.setText("Query Formulation");
 
         jLabel5.setText("Query Weighting:");
@@ -228,7 +228,7 @@ public class GUI extends javax.swing.JFrame {
 
         file_addr_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel6.setText("Files Address");
 
         jLabel7.setText("Document Collection");
@@ -341,12 +341,17 @@ public class GUI extends javax.swing.JFrame {
 
         action_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel10.setText("Actions");
 
         indexing_btn.setText("Doc. Indexing");
 
         search_btn.setText("Search");
+        search_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_btnActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("user query:");
 
@@ -374,7 +379,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(action_panelLayout.createSequentialGroup()
                         .addComponent(indexing_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(show_if_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                        .addComponent(show_if_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(experiment_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56))))
@@ -444,6 +449,10 @@ public class GUI extends javax.swing.JFrame {
             stopword_addr.setText(file.getAbsolutePath());
         }
     }//GEN-LAST:event_stopword_browseActionPerformed
+
+    private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
+        new SearchResult().setVisible(true);
+    }//GEN-LAST:event_search_btnActionPerformed
 
 
     /**
