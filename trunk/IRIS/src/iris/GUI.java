@@ -461,7 +461,9 @@ public class GUI extends javax.swing.JFrame {
 
     private void show_if_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_if_btnActionPerformed
         // TODO add your handling code here:
-        
+        ShowInvertedFile sif = new ShowInvertedFile(this);
+        sif.show();
+        this.hide();
     }//GEN-LAST:event_show_if_btnActionPerformed
 
 
