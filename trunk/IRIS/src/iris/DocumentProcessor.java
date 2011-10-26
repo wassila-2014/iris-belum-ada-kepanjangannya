@@ -85,6 +85,7 @@ public class DocumentProcessor {
             while (dis.available()!=0){
                 text = new DataInputStream(fin).readLine();
                 jenistext = this.GetTextProperty(text);
+                System.out.println("tes");
 
                 if (jenistext==1){
                     idx = this.GetTextIdx(text);
@@ -101,8 +102,10 @@ public class DocumentProcessor {
                 }
                 if (jenistext==3){
                     dcontent = new DataInputStream(fin).readLine();
-                    text = new DataInputStream(fin).readLine();
-                    jenistext = this.GetTextProperty(text);
+                    if (dis.available()!=0){
+                        text = new DataInputStream(fin).readLine();
+                        jenistext = this.GetTextProperty(text);
+                    }
                     while (jenistext < 1 && dis.available()!=0){
                         dcontent = dcontent + " " + text;
                         text = new DataInputStream(fin).readLine();
@@ -113,7 +116,10 @@ public class DocumentProcessor {
 //                    System.out.println("[TITLE] "+dtitle);
 //                    System.out.println("[CONTENT] "+dcontent);
                     docs[idx].SetContent(dcontent);
+
                     docs[idx].SetTitle(dtitle);
+                    System.out.println("title: "+dtitle);
+                    System.out.println("content: "+dcontent);
                     if (jenistext==1){
                         idx = this.GetTextIdx(text);
                     }
@@ -140,9 +146,9 @@ public class DocumentProcessor {
         // TODO code application logic here
         DocumentProcessor tes = new DocumentProcessor();
         Document[] docs = new Document[1500];
-        docs = tes.GetDocCollection("D:\\kuliah\\STBI\\Tugas 3 STBI\\doc\\cranfull.all");
+        docs = tes.GetDocCollection("D:\\kuliah\\STBI\\Tugas 3 STBI\\cran.all\\crandummy.all");
         System.out.println("Jumlah: " + docs.length);
-        for (int i=1; i<200; i++){
+        for (int i=1; i<docs.length; i++){
             System.out.println("["+i+"]");
             System.out.println("title: " +docs[i].title);
             System.out.println("content: " +docs[i].content);
