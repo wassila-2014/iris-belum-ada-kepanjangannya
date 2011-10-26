@@ -26,7 +26,7 @@ public class IRSystem {
 
     /************ KOMPONEN-KOMPONEN UTAMA DALAM IR SYSTEM *************/
     HashMap<Integer, Document> Doc;// <docID, dokumen yang berasosiasi>
-    HashMap<Integer, String> Q_test; // queryID, isi query
+    ArrayList<String> Q_test; // queryID, isi query
     HashMap<RelJud, Boolean> RJ; // daftar Relevant Judgement
     ArrayList<Integer> RJSize;  //jumlah dokumen relevan per query
 
@@ -337,20 +337,20 @@ public class IRSystem {
     /*******************************************************************/
     void BacaQuery(String filename) {
         try {
-            Q_test = new HashMap<Integer, String> ();
-            FileInputStream fstream = new FileInputStream(filename);
-            DataInputStream in = new DataInputStream(fstream);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String strLine;
-            int i = 0;
-            while ((strLine = br.readLine()) != null) {
-                Q_test.put(i,strLine.replaceAll("[^a-zA-Z]", ""));
-                ++i;
+            Q_test = new ArrayList<String>();
+            DocumentProcessor dp = new DocumentProcessor();
+            Query[] q = dp.GetQueryCollection(filename);
+            Integer i = 0;
+            for (Query query : q) {
+                if (i==0) {}
+                else {
+                    Q_test.add(query.content);
+                }
+                i++;
             }
-            //Close the input stream
-            in.close();
-        } catch (Exception e) {//Catch exception if any
-            System.err.println("Error: " + e.getMessage());
+            GlobalVariable.Doc = Doc;
+        } catch (IOException ex) {
+            Logger.getLogger(IRSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -392,8 +392,30 @@ public class IRSystem {
 
     /************************** EXPERIMENT *****************************/
     //lakukan Retrieve untuk semua Query di Q_test, lalu hitung NIAP masing2
-
-    float countNIAP(Vector<Integer> SearchResult,int queryID){
+    void experiment(String queryAddress, String RJAddress,Boolean isStemming, Boolean isStopWordRemoval, Boolean isUseIDF, int WeightBy, Boolean isNormalisasi)
+    {
+        BacaQuery(queryAddress);
+	//- Baca file Relevance Judgement, simpen ke variabel RJ
+        BacaRJ(RJAddress);
+	//- Lakukan Retrieval Process (yang b.) untuk masing2 Query di Q_test
+        float niap = 0;
+        float sum = 0;
+        for(int i = 0; i < Q_test.size(); ++i)
+        {
+            IndexQuery(Q_test.get(i), isStemming, isStopWordRemoval, isUseIDF, WeightBy, isNormalisasi);
+            Retrieve();
+            niap = countNIAP(GlobalVariable.searchResultDocument,i);
+            GlobalVariable.NIAP.add(niap);
+            sum += niap;
+        }
+        GlobalVariable.xNIAP = sum/Q_test.size();
+        //- Cocokkan dengan RJ, tentukan banyaknya:
+	//	> dokumen yang diretrieve
+	//	> dokumen yang relevan
+	//	> dokumen yang relevan yang diretrieve
+	//- Itung NIAP nya
+    }
+    float countNIAP(List<Integer> SearchResult,int queryID){
         int relDoc = 0;
         int retrieved = SearchResult.size();
         
