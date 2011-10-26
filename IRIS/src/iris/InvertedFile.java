@@ -18,7 +18,7 @@ public class InvertedFile {
 
 
    //konstruktor
-    public InvertedFile(String trm, Integer id, int tfr, int tfw){
+    public InvertedFile(String trm, Integer id, int tfr, float tfw){
         term = trm;
         docID = id;
         TF = tfr;

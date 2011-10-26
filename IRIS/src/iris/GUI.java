@@ -345,6 +345,11 @@ public class GUI extends javax.swing.JFrame {
         jLabel10.setText("Actions");
 
         indexing_btn.setText("Doc. Indexing");
+        indexing_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indexing_btnActionPerformed(evt);
+            }
+        });
 
         search_btn.setText("Search");
         search_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -465,6 +470,11 @@ public class GUI extends javax.swing.JFrame {
         sif.show();
         this.hide();
     }//GEN-LAST:event_show_if_btnActionPerformed
+
+    private void indexing_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexing_btnActionPerformed
+        IRSystem irs = new IRSystem();
+        irs.IndexDocument(dok_addr.getText(), dok_stemming.isSelected(), dok_stopword.isSelected(), stopword_addr.getText(), dok_idf.isSelected(), dok_tf.getSelectedIndex(), dok_normal.isSelected());
+    }//GEN-LAST:event_indexing_btnActionPerformed
 
 
     /**
