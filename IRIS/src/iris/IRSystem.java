@@ -363,7 +363,6 @@ public class IRSystem {
             DataInputStream in = new DataInputStream(fstream);
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             String strLine;
-            int i = 0;
             String[] temp;
             while ((strLine = br.readLine()) != null) {
                 temp = strLine.split(" ", 2);
