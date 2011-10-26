@@ -1,0 +1,74 @@
+Tugas 2 STBI
+
+Buat sebuah prototype IR System dengan menggunakan model ruang vektor.
+
+Indexing
+Kasih user pilihan:
+==========================================
+1. Stemming
+	- memakai stemming
+	- tidak memakai stemming
+2. Stop word
+	- memakai stop word
+	- tidak memakai stop word
+==========================================
+1. Bobot kata dokumen
+	- raw tf
+	- binary tf
+	- logarithmic tf
+	- augmented tf
+2. IDF
+	- memakai IDF
+	- tidak memakai IDF
+3. Normalisasi
+	- memakai normalisasi
+	- tidak memakai normalisasi
+===========================================
+1. Bobot kata query
+	- raw tf
+	- binary tf
+	- logarithmic tf
+	- augmented tf
+2. IDF
+	- memakai IDF
+	- tidak memakai IDF
+3. Normalisasi
+	- memakai normalisasi
+	- tidak memakai normalisasi
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+--------------------------------------------------------------
+
+Yang harus ada dalam UI
+- Lokasi file stop word
+- Lokasi koleksi dokumen
+- Lokasi query (kalau tidak interaktif, bisa dua2nya) (querynya bisa banyak)
+- Lokasi relevance judgement
+
+- Inverted FIle
+	- query
+	- no. dokumen yang mengandung query
+	- raw tf
+	- df (banyak dokumen yang mengandung query)
+	- bobot
+
+- pilihan search
+	- search langsung (user langsung mengetikkan query yang ingin dicari, ga perlu dihitung NIAPnya)
+	- experiment (pake query yang ada di file eksternal tadi, hasilnya pake NIAP, average NIAP juga)
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+--------------------------------------------------------------
+
+- daftar test collection
+web.eecs.utk.edu/research/lsi/corpa.html
+- stop word
+ftp.cs.cornell.edu
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+--------------------------------------------------------------
+
+DELIVERABLES
+- Hardcopy laporan
+	- deskripsi prototype
+	- user manual
+	- hasil experiment (minimal 16 experiment)
