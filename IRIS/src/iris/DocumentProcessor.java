@@ -85,7 +85,7 @@ public class DocumentProcessor {
             while (dis.available()!=0){
                 text = new DataInputStream(fin).readLine();
                 jenistext = this.GetTextProperty(text);
-                System.out.println("tes");
+
 
                 if (jenistext==1){
                     idx = this.GetTextIdx(text);
@@ -118,8 +118,7 @@ public class DocumentProcessor {
                     docs[idx].SetContent(dcontent);
 
                     docs[idx].SetTitle(dtitle);
-                    System.out.println("title: "+dtitle);
-                    System.out.println("content: "+dcontent);
+
                     if (jenistext==1){
                         idx = this.GetTextIdx(text);
                     }
