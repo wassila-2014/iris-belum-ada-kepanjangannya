@@ -1,0 +1,80 @@
+Sebelum ke bagian pembagian tugas, baca dulu inpoh2 berikut:
+
+1. Ikuti nama-nama variabel yang udah dibikin, biar sinkron
+
+2. Di dalem HashMap, tipe integer pake Integer.Gak tau euy, kalo pake int dianggep error. Mungkin ada yg bisa benerin biar bisa int aja..
+
+3. Sebenarnya sistem ini lebih enak pake Database, tinggal pake SELECT, FROM, bla bla buat ngakses 'tabel' berupa array vector. Tapi berhubung terlanjur, kita bikin sendiri aja, di Class Filter. Yang butuh filtering silakan tambahkan sendiri di kelas tersebut. (kalo tipenya HashMap, langsung pake hashing aja)
+
+4. 
+Urutan Proses IR System Secara Umum:
+a. Pas klik Doc Indexing:
+	- baca file dokumen, simpen di variabel Doc.
+	- iterasi ke tiap dokumen yang ada
+		> untuk tiap kata, itung banyak kata tersebut dalam masing2 dokumen (entah mau pake algoritma apa), itung bobotnya (menurut pilihan user), tambahkan ke variabel InF
+	- itung banyak DF tiap kata (filter kata di InF, terus itung banyak dokumennya)
+
+b. Pas klik Show Inverted File, isi dari InF dan DF ditampilkan dalam bentuk tabel. Fields: term | Document | TF | Weight | DF
+
+c. Pas pilih Search dari query yang dimasukkan user (Retrieval Process):
+	- itung bobot masing2 kata di query (menurut pilihan user) --> disimpen di variabel lokal aja kayaknya
+	- itung Similarity untuk masing-masing dokumen
+	- urutkan berdasarkan ranking
+	- tampilkan hasilnya ke pengguna
+
+d. Pas klik Experiment
+	- Baca file queries, simpen ke variabel Q_test
+	- Baca file Relevance Judgement, simpen ke variabel RJ
+	- Lakukan Retrieval Process (yang b.) untuk masing2 Query di Q_test
+	- Cocokkan dengan RJ, tentukan banyaknya:
+		> dokumen yang diretrieve
+		> dokumen yang relevan
+		> dokumen yang relevan yang diretrieve
+	- Itung NIAP nya
+
+SELESAI!!!! (event handler tombol2 di atas memanggil fungsi di IRSystem Class)
+
+5. Isi Laporan:
+   - deskripsi prototipe
+   - user manual
+   - hasil eksperiment
+---------------------------------------------------------------------------
+Pembagian Tugas:
+
+Hendra:
+- GUI (sudah)
+- Laporan: deskripsi prototipe sama user manual
+
+Zakiy:
+- Implementasi Doc Indexing (1): Baca file dokumen, pindahin ke variabel Doc
+- Implementasi Show Inverted File (InFnya bikin yg dummy dulu)
+- Laporan: hasil eksperiment
+
+Danang:
+- Implementasi Doc Indexing (2): Lakukan pembuatan InF --> itung bobot, implementasikan rumus TF2an, idf, normalisasi, stemming, stopword, ngisi DF
+(pake Doc dummy dulu)
+	
+Akbar:
+- Implementasi Retrieval Process (kalo tombol search diklik)
+	(isi InF pake data dummy dulu)
+	(pembobotan query, ntar pake pembobotan yg dibuat Danang. Sementara pake TF doank aja)
+- Pada hasil ranking, kalo ada dokumen yang diklik, muncul detail dokumennya
+
+Ncret:
+- Implementasi Experiment (ranking pake dummy dulu, yang penting bisa ngitung NIAP)
+
+(Akbar n Ncret, tolong kerjasama.. Soalnya kalo fungsi yg dibikin Akbar udah jadi, bakal dipake sama Ncret. Zakiy n Danang juga gitu)
+
+TOLONG, Hari SABTU MALEM bagian masing-masing udah jadi!! Kalo bisa kita ada kumpul2 buat bahas tugas keseluruhan.. Jadwal bisa diatur lah yaa..
+
+------------------------------------------------------------------------
+TAMBAHAN:
+
+- Sering2 update ke dropbox yaa.. Tapi usahakan jangan sampai konflik. Biar aman bikin di luar dulu, kalo udah bener baru dikopi ke dropbox.
+- Kalo ada yang mau tuker2 pembagian tugas boleh2 aja, ada yang mau ngerjain semuanya juga oke.. =P
+
+- Kalo ada masalah, kita bahas bersama
+
+- Konsep yang saya tulis di sini, bersumber dari ke-sotoy-an saya sendiri.. Maaf kalo ada yang salah ato gak cocok.. ^^
+
+Selamat Mengerjakan!!
