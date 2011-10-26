@@ -34,7 +34,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="11" width="563" height="-1"/>
+          <AbsoluteConstraints x="10" y="11" width="560" height="-1"/>
         </Constraint>
       </Constraints>
 
@@ -44,7 +44,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="4" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -185,7 +185,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="289" y="119" width="-1" height="-1"/>
+          <AbsoluteConstraints x="289" y="119" width="280" height="-1"/>
         </Constraint>
       </Constraints>
 
@@ -212,7 +212,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                  <EmptySpace pref="71" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -308,22 +308,19 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jLabel9" alignment="1" max="32767" attributes="1"/>
-                                      <Component id="jLabel7" alignment="0" max="32767" attributes="1"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLabel9" alignment="1" max="32767" attributes="1"/>
+                                          <Component id="jLabel7" alignment="0" max="32767" attributes="1"/>
+                                      </Group>
                                       <Component id="jLabel8" alignment="0" pref="116" max="32767" attributes="1"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="query_addr" alignment="0" max="32767" attributes="1"/>
-                                              <Component id="dok_addr" alignment="0" pref="285" max="32767" attributes="1"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                          <Component id="rel_addr" min="-2" pref="286" max="-2" attributes="0"/>
+                                      <Component id="rel_addr" min="-2" pref="286" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="query_addr" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="dok_addr" alignment="0" pref="285" max="32767" attributes="1"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -334,17 +331,16 @@
                               <Component id="query_browse" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="rel_browse" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="50" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel12" pref="116" max="32767" attributes="1"/>
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="stopword_addr" min="-2" pref="286" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="stopword_browse" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="65" pref="65" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -361,28 +357,25 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="query_browse" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="query_addr" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dok_addr" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="dok_addr" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="rel_browse" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rel_addr" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rel_addr" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="stopword_browse" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="stopword_addr" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="stopword_addr" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="stopword_browse" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
@@ -481,27 +474,22 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel11" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="user_query" min="-2" pref="331" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="search_btn" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                          <Component id="jLabel11" min="-2" pref="80" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="user_query" min="-2" pref="331" max="-2" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                          <Component id="search_btn" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="indexing_btn" min="-2" pref="144" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="show_if_btn" pref="171" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="show_if_btn" pref="171" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="experiment_btn" min="-2" pref="147" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -512,20 +500,20 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="indexing_btn" alignment="3" min="-2" pref="42" max="-2" attributes="1"/>
-                              <Component id="experiment_btn" alignment="3" pref="42" max="32767" attributes="1"/>
-                          </Group>
+                          <Component id="indexing_btn" min="-2" pref="42" max="-2" attributes="1"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="28" pref="28" max="28" attributes="0"/>
-                          <Component id="show_if_btn" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="experiment_btn" alignment="3" pref="42" max="32767" attributes="1"/>
+                              <Component id="show_if_btn" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="user_query" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="user_query" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="search_btn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="12" max="32767" attributes="0"/>
