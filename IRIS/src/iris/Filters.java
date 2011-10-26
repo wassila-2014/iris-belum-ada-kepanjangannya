@@ -5,6 +5,8 @@
 
 package iris;
 
+import java.util.Vector;
+
 /**
  *
  * @author User
@@ -22,5 +24,26 @@ public class Filters {
         return result;
     }
 
+    Vector<InvertedFile> filterInFByInfQuery(Vector<InvertedFile> InFDoc, Vector<InvertedFile> InFQuery) {
+        Vector<InvertedFile> result = new Vector<InvertedFile>();
 
+        int InFQuerySize = InFQuery.size();
+        int InFDocSize = InFDoc.size();
+        int i,j;
+        
+        for (i=0; i<InFQuerySize; ++i) {
+            String queryTermNow = InFQuery.get(i).term;
+            for (j=0; i<InFDocSize; ++j) {
+                String docTermNow = InFDoc.get(j).term;
+                //Kalo term queryTermNow = docTermNow, tambahin ke result;
+                if (queryTermNow.equals(docTermNow)) {
+                    result.add(InFDoc.get(j));
+                }
+            }
+        }
+        
+        return result;
+    }
+
+    
 }

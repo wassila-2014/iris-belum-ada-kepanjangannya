@@ -14,7 +14,7 @@ public class InvertedFile {
     public String term;//suatu kata
     public Integer docID;//di dokumen mana, berasosiasi ke variabel Doc
     public int TF; //banyak kata term yang muncul di dokumen docID
-    public int TFWeight; //bobot kata term di dokumen docID
+    public float TFWeight; //bobot kata term di dokumen docID
 
 
    //konstruktor
