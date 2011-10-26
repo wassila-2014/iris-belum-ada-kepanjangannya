@@ -94,7 +94,7 @@ public class DocumentProcessor {
                     text = new DataInputStream(fin).readLine();
                     jenistext = this.GetTextProperty(text);
                     while (jenistext < 1){
-                        dtitle = dtitle + text;
+                        dtitle = dtitle + " " + text;
                         text = new DataInputStream(fin).readLine();
                         jenistext = this.GetTextProperty(text);
                     }
@@ -104,7 +104,7 @@ public class DocumentProcessor {
                     text = new DataInputStream(fin).readLine();
                     jenistext = this.GetTextProperty(text);
                     while (jenistext < 1 && dis.available()!=0){
-                        dcontent = dcontent + text;
+                        dcontent = dcontent + " " + text;
                         text = new DataInputStream(fin).readLine();
                         if (dis.available()!=0)
                             jenistext = this.GetTextProperty(text);
