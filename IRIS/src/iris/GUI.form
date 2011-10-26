@@ -334,10 +334,10 @@
                               <Component id="query_browse" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="rel_browse" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="48" max="32767" attributes="0"/>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel12" pref="114" max="32767" attributes="1"/>
+                          <Component id="jLabel12" pref="116" max="32767" attributes="1"/>
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Component id="stopword_addr" min="-2" pref="286" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -491,7 +491,7 @@
                               </Group>
                               <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="32" max="32767" attributes="0"/>
+                          <EmptySpace pref="34" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="indexing_btn" min="-2" pref="144" max="-2" attributes="0"/>

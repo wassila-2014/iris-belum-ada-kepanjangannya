@@ -492,7 +492,6 @@ public class GUI extends javax.swing.JFrame {
         irs.IndexDocument(dok_addr.getText(), dok_stemming.isSelected(), dok_stopword.isSelected(), stopword_addr.getText(), dok_idf.isSelected(), dok_tf.getSelectedIndex(), dok_normal.isSelected());
     }//GEN-LAST:event_indexing_btnActionPerformed
 
-<<<<<<< .mine
     private void experiment_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_experiment_btnActionPerformed
         // TODO :
         //- Baca file queries, simpen ke variabel Q_test
@@ -506,11 +505,11 @@ public class GUI extends javax.swing.JFrame {
 	//- Itung NIAP nya
         
     }//GEN-LAST:event_experiment_btnActionPerformed
-=======
+
     private void query_idfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_query_idfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_query_idfActionPerformed
->>>>>>> .r26
+
 
 
     /**
