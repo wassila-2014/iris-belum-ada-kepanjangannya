@@ -227,14 +227,14 @@ public class DocumentProcessor {
 //            System.out.println("-----------------------");
 //        }
 
-        DocumentProcessor tes = new DocumentProcessor();
-        Query[] docs = new Query[1500];
-        docs = tes.GetQueryCollection("D:\\kuliah\\STBI\\Tugas 3 STBI\\data uji\\CISI\\query.text");
-        System.out.println("Jumlah: " + (docs.length-1));
-        for (int i=1; i<docs.length; i++){
-            System.out.println("["+i+"]");
-            System.out.println("content: " +docs[i].content);
-            System.out.println("-----------------------");
-        }
+//        DocumentProcessor tes = new DocumentProcessor();
+//        Query[] docs = new Query[1500];
+//        docs = tes.GetQueryCollection("D:\\kuliah\\STBI\\Tugas 3 STBI\\data uji\\CISI\\query.text");
+//        System.out.println("Jumlah: " + (docs.length-1));
+//        for (int i=1; i<docs.length; i++){
+//            System.out.println("["+i+"]");
+//            System.out.println("content: " +docs[i].content);
+//            System.out.println("-----------------------");
+//        }
     }
 }
