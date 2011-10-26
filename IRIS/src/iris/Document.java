@@ -19,4 +19,8 @@ public class Document {
         title = ttl;
         content = ctn;
     }
+
+    public void ReadDocCollection(String lokasi){
+        
+    }
 }
