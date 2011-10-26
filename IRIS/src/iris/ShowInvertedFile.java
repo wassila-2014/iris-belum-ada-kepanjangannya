@@ -40,7 +40,6 @@ public class ShowInvertedFile extends javax.swing.JFrame {
             data[i] = row;
         }
 
-        System.out.println("[" + IRSystem.InF.get(0).term +"] ["+ IRSystem.InF.get(0).docID+"] ["+ IRSystem.InF.get(0).TF+"] ["+ IRSystem.InF.get(0).TFWeight+"] ["+ IRSystem.DF.get(IRSystem.InF.get(0).term)+"]");
         invfiletable.setModel(new javax.swing.table.DefaultTableModel(
             data,
             columnNames
