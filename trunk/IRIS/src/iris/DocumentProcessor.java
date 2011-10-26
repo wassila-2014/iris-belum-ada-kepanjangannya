@@ -83,8 +83,10 @@ public class DocumentProcessor {
             dis = new DataInputStream(bis);
 
             while (dis.available()!=0){
+                System.out.println("tes");
                 text = new DataInputStream(fin).readLine();
-                jenistext = this.GetTextProperty(text);
+                if (dis.available()!=0 && text.compareTo("")!=0)
+                    jenistext = this.GetTextProperty(text);
 
 
                 if (jenistext==1){
@@ -93,11 +95,13 @@ public class DocumentProcessor {
                 if (jenistext==2){
                     dtitle = new DataInputStream(fin).readLine();
                     text = new DataInputStream(fin).readLine();
-                    jenistext = this.GetTextProperty(text);
+                    if (dis.available()!=0 && text.compareTo("")!=0)
+                        jenistext = this.GetTextProperty(text);
                     while (jenistext < 1){
                         dtitle = dtitle + " " + text;
                         text = new DataInputStream(fin).readLine();
-                        jenistext = this.GetTextProperty(text);
+                        if (dis.available()!=0 && text.compareTo("")!=0)
+                            jenistext = this.GetTextProperty(text);
                     }
                 }
                 if (jenistext==3){
@@ -109,12 +113,12 @@ public class DocumentProcessor {
                     while (jenistext < 1 && dis.available()!=0){
                         dcontent = dcontent + " " + text;
                         text = new DataInputStream(fin).readLine();
-                        if (dis.available()!=0)
+                        if (dis.available()!=0 && text.compareTo("")!=0)
                             jenistext = this.GetTextProperty(text);
                     }
-//                    System.out.println("[IDX] "+idx);
+                    System.out.println("[IDX] "+idx);
 //                    System.out.println("[TITLE] "+dtitle);
-//                    System.out.println("[CONTENT] "+dcontent);
+                    System.out.println("[CONTENT] "+dcontent);
                     dcontent = dcontent.toLowerCase();
                     dtitle = dtitle.toLowerCase();
                     docs[idx].SetContent(dcontent);
@@ -143,15 +147,92 @@ public class DocumentProcessor {
 
     }
 
+    public Query[] GetQueryCollection(String lokasi) throws IOException{
+        Query[] docs = new Query[1500];
+        for(int i=0;i<1500;i++){
+            docs[i] = new Query("");
+        }
+        int idx = 0;
+        String dcontent="";
+        int jenistext = 0;
+        FileInputStream fin;
+        BufferedInputStream bis;
+        DataInputStream dis;
+        String text="";
+
+        try {
+            fin = new FileInputStream(lokasi);
+            bis = new BufferedInputStream(fin);
+            dis = new DataInputStream(bis);
+
+            while (dis.available()!=0){
+                text = new DataInputStream(fin).readLine();
+                if (dis.available()!=0 && text.compareTo("")!=0)
+                    jenistext = this.GetTextProperty(text);
+
+
+                if (jenistext==1){
+                    idx = this.GetTextIdx(text);
+                    
+                }
+                if (jenistext==3){
+                    dcontent = new DataInputStream(fin).readLine();
+                    if (dis.available()!=0){
+                        text = new DataInputStream(fin).readLine();
+                        if (dis.available()!=0 && text.compareTo("")!=0)
+                            jenistext = this.GetTextProperty(text);
+                    }
+                    while (jenistext < 1 && dis.available()!=0){
+                        dcontent = dcontent + " " + text;
+                        text = new DataInputStream(fin).readLine();
+                        if (dis.available()!=0 && text.compareTo("")!=0)
+                            jenistext = this.GetTextProperty(text);
+                    }
+//                    System.out.println("[TITLE] "+dtitle);
+                    dcontent = dcontent.toLowerCase();
+                    docs[idx].SetContent(dcontent);
+
+                    if (jenistext==1){
+                        idx = this.GetTextIdx(text);
+                    }
+
+                }
+            }
+            Query[] dochasil = new Query[idx+1];
+            for(int i=0;i<idx+1;i++){
+                dochasil[i] = new Query(docs[i].GetContent());
+            }
+
+            fin.close();
+            return dochasil;
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Document.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return docs;
+
+    }
+
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
+//        DocumentProcessor tes = new DocumentProcessor();
+//        Document[] docs = new Document[1500];
+//        docs = tes.GetDocCollection("D:\\kuliah\\STBI\\Tugas 3 STBI\\cran.all\\crandummy.all");
+//        System.out.println("Jumlah: " + (docs.length-1));
+//        for (int i=1; i<docs.length; i++){
+//            System.out.println("["+i+"]");
+//            System.out.println("title: " +docs[i].title);
+//            System.out.println("content: " +docs[i].content);
+//            System.out.println("-----------------------");
+//        }
+
         DocumentProcessor tes = new DocumentProcessor();
-        Document[] docs = new Document[1500];
-        docs = tes.GetDocCollection("D:\\kuliah\\STBI\\Tugas 3 STBI\\cran.all\\crandummy.all");
-        System.out.println("Jumlah: " + docs.length);
+        Query[] docs = new Query[1500];
+        docs = tes.GetQueryCollection("D:\\kuliah\\STBI\\Tugas 3 STBI\\data uji\\CISI\\query.text");
+        System.out.println("Jumlah: " + (docs.length-1));
         for (int i=1; i<docs.length; i++){
             System.out.println("["+i+"]");
-            System.out.println("title: " +docs[i].title);
             System.out.println("content: " +docs[i].content);
             System.out.println("-----------------------");
         }
