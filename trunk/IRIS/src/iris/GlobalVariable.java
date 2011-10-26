@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class GlobalVariable {
     public static HashMap<Integer, Document> Doc;
-    public static HashMap<Integer, String> Que;
+    public static ArrayList<String>Que;
     public static List<Integer> searchResultDocument = null;
     public static List<Float> searchResultSimilarity = null;
     public static String queryString;
