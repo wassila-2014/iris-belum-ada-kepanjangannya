@@ -416,7 +416,7 @@ public class IRSystem {
             
         }
         GlobalVariable.xNIAP = sum/n;
-        System.out.println(GlobalVariable.NIAP.get(111));
+        //System.out.println(GlobalVariable.NIAP.get(111));
         System.out.println("Rata2");
         System.out.println(GlobalVariable.xNIAP);
     }
