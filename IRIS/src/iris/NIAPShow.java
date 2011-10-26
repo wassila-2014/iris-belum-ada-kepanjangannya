@@ -32,7 +32,7 @@ public class NIAPShow extends javax.swing.JFrame {
     public NIAPShow() {
         showSearchResult();
         initComponents();
-        jLabel4.setText('"'+GlobalVariable.queryString+'"');
+        jLabel4.setText(""+GlobalVariable.xNIAP);
         jLabel5.setText(""+ GlobalVariable.searchResultSimilarity.size());
     }
 
@@ -57,10 +57,12 @@ public class NIAPShow extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel1.setText("NIAPS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -68,19 +70,20 @@ public class NIAPShow extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(174, 174, 174)
+                .addGap(202, 202, 202)
                 .addComponent(jLabel1)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         InF_Table.setModel(model
         );
@@ -92,7 +95,7 @@ public class NIAPShow extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(InF_scrollbar, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addComponent(InF_scrollbar, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -103,7 +106,10 @@ public class NIAPShow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel2.setText("Query : ");
+        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel2.setText("Rerata NIAP");
 
         jLabel3.setText("Number Of Document Retrieved :");
 
@@ -124,9 +130,9 @@ public class NIAPShow extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
+                        .addGap(51, 51, 51)
                         .addComponent(jLabel4)))
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,13 +191,12 @@ public class NIAPShow extends javax.swing.JFrame {
 
     public final void showSearchResult(){
         model = new DefaultTableModel(new Object [][] {}, new String []{"Query ID", "NIAP"});
-
         int sizeQuery = GlobalVariable.Que.size();
         String ni = "";
         for(int i= 0; i<sizeQuery ; ++i){
             if(GlobalVariable.NIAP.get(i)>-1) ni=GlobalVariable.NIAP.get(i)+"";
             else ni="-";
-            model.insertRow(0,new Object[]{i, ni});
+            model.insertRow(0,new Object[]{sizeQuery-i, ni});
         }
     }
 

@@ -10,6 +10,7 @@
  */
 package iris;
 
+import java.awt.Cursor;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -80,29 +81,34 @@ public class GUI extends javax.swing.JFrame {
         show_if_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Iris - Information Retrieval Iris System");
+        setBackground(new java.awt.Color(255, 204, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(580, 560));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Workspace\\Tugas 3 STBI\\iris.jpg")); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Danzz\\Pictures\\iris copy.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout title_panelLayout = new javax.swing.GroupLayout(title_panel);
         title_panel.setLayout(title_panelLayout);
         title_panelLayout.setHorizontalGroup(
             title_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         title_panelLayout.setVerticalGroup(
             title_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(title_panelLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(title_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 560, 100));
 
-        document_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        document_panel.setBackground(new java.awt.Color(204, 255, 204));
+        document_panel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Collection Document Indexing");
@@ -111,12 +117,16 @@ public class GUI extends javax.swing.JFrame {
 
         dok_tf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Raw TF", "Binary TF", "Logaritmic TF", "Augmented TF" }));
 
+        dok_idf.setBackground(new java.awt.Color(204, 255, 204));
         dok_idf.setText("IDF");
 
+        dok_normal.setBackground(new java.awt.Color(204, 255, 204));
         dok_normal.setText("Normalization");
 
+        dok_stemming.setBackground(new java.awt.Color(204, 255, 204));
         dok_stemming.setText("Perform Stemming");
 
+        dok_stopword.setBackground(new java.awt.Color(204, 255, 204));
         dok_stopword.setText("Perform Stopword Removal");
 
         javax.swing.GroupLayout document_panelLayout = new javax.swing.GroupLayout(document_panel);
@@ -162,7 +172,8 @@ public class GUI extends javax.swing.JFrame {
 
         getContentPane().add(document_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 119, -1, -1));
 
-        query_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        query_panel.setBackground(new java.awt.Color(204, 255, 204));
+        query_panel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel4.setText("Query Formulation");
@@ -171,6 +182,7 @@ public class GUI extends javax.swing.JFrame {
 
         query_tf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Raw TF", "Binary TF", "Logaritmic TF", "Augmented TF" }));
 
+        query_idf.setBackground(new java.awt.Color(204, 255, 204));
         query_idf.setText("IDF");
         query_idf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,10 +190,13 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        query_normal.setBackground(new java.awt.Color(204, 255, 204));
         query_normal.setText("Normalization");
 
+        query_stemming.setBackground(new java.awt.Color(204, 255, 204));
         query_stemming.setText("Perform Stemming");
 
+        query_stopword.setBackground(new java.awt.Color(204, 255, 204));
         query_stopword.setText("Perform Stopword Removal");
 
         javax.swing.GroupLayout query_panelLayout = new javax.swing.GroupLayout(query_panel);
@@ -203,7 +218,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(query_stopword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(query_stemming, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(query_tf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         query_panelLayout.setVerticalGroup(
             query_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +242,8 @@ public class GUI extends javax.swing.JFrame {
 
         getContentPane().add(query_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 119, 280, -1));
 
-        file_addr_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        file_addr_panel.setBackground(new java.awt.Color(204, 255, 204));
+        file_addr_panel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel6.setText("Files Address");
@@ -330,12 +346,13 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(stopword_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(stopword_browse))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         getContentPane().add(file_addr_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 560, 170));
 
-        action_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        action_panel.setBackground(new java.awt.Color(204, 255, 204));
+        action_panel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel10.setText("Actions");
@@ -354,7 +371,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setText("user query:");
+        jLabel11.setText("User Query:");
 
         experiment_btn.setText("Experiment");
         experiment_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -460,10 +477,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
         if (isIndexingDoc) {
-            irs.IndexQuery(user_query.getText(), query_stemming.isSelected(), query_stopword.isSelected(), query_idf.isSelected(), query_tf.getSelectedIndex(), query_normal.isSelected());
-            irs.Retrieve();
-            GlobalVariable.queryString = user_query.getText();
-            new SearchResult().setVisible(true);
+            if (user_query.getText()!="") {
+                irs.IndexQuery(user_query.getText(), query_stemming.isSelected(), query_stopword.isSelected(), query_idf.isSelected(), query_tf.getSelectedIndex(), query_normal.isSelected());
+                irs.Retrieve();
+                GlobalVariable.queryString = user_query.getText();
+                new SearchResult().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Maaf, Anda belum memasukkan query! Hohoho ");
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Maaf, Anda belum melakukan Document Indexing! Hohoho ");
         }
@@ -471,29 +492,45 @@ public class GUI extends javax.swing.JFrame {
 
     private void show_if_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_if_btnActionPerformed
         // TODO add your handling code here:
-        ShowInvertedFile sif = new ShowInvertedFile(this);
-        sif.show();
-        this.setEnabled(false);
+        if (isIndexingDoc) {
+            ShowInvertedFile sif = new ShowInvertedFile(this);
+            sif.show();
+            this.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Maaf, Anda belum melakukan Document Indexing! Hohoho ");
+        }
     }//GEN-LAST:event_show_if_btnActionPerformed
 
     private void indexing_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexing_btnActionPerformed
-        isIndexingDoc = true;
-        irs = new IRSystem();
-        irs.IndexDocument(dok_addr.getText(), dok_stemming.isSelected(), dok_stopword.isSelected(), stopword_addr.getText(), dok_idf.isSelected(), dok_tf.getSelectedIndex(), dok_normal.isSelected());
-        JOptionPane.showMessageDialog(this, "Indexing Selesai.");
+        try {
+            if (dok_addr.getText().isEmpty())
+                throw new Exception("Maaf, Anda belum memilih dokumen koleksi");
+            if (dok_stopword.isSelected() && stopword_addr.getText().isEmpty())
+                throw new Exception("Maaf, Anda belum memilih koleksi stop word");
+            this.setCursor(Cursor.WAIT_CURSOR);
+            isIndexingDoc = true;
+            irs = new IRSystem();
+            irs.IndexDocument(dok_addr.getText(), dok_stemming.isSelected(), dok_stopword.isSelected(), stopword_addr.getText(), dok_idf.isSelected(), dok_tf.getSelectedIndex(), dok_normal.isSelected());
+            this.setCursor(Cursor.DEFAULT_CURSOR);
+            JOptionPane.showMessageDialog(this, "Indexing Selesai.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_indexing_btnActionPerformed
 
     private void experiment_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_experiment_btnActionPerformed
         // TODO :
-        //- Baca file queries, simpen ke variabel Q_test
-        String qaddress = query_addr.getText();
-        String rjaddress = rel_addr.getText();
+       //- Baca file queries, simpen ke variabel Q_test
+            String qaddress = query_addr.getText();
+            String rjaddress = rel_addr.getText();
 
         if (qaddress == null || rjaddress == null) {
             JOptionPane.showMessageDialog(this, "Jangan lupa alamat", "Message!", ERROR);
         } else {
             if (isIndexingDoc) {
+                this.setCursor(Cursor.WAIT_CURSOR);
                 irs.experiment(qaddress, rjaddress, query_stemming.isSelected(), query_stopword.isSelected(), query_idf.isSelected(), query_tf.getSelectedIndex(), query_normal.isSelected());
+                this.setCursor(Cursor.DEFAULT_CURSOR);
                 new NIAPShow().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Maaf, Anda belum melakukan Document Indexing! Hohoho ");
