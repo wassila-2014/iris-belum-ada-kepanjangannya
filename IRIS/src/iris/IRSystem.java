@@ -409,11 +409,6 @@ public class IRSystem {
             sum += niap;
         }
         GlobalVariable.xNIAP = sum/Q_test.size();
-        //- Cocokkan dengan RJ, tentukan banyaknya:
-	//	> dokumen yang diretrieve
-	//	> dokumen yang relevan
-	//	> dokumen yang relevan yang diretrieve
-	//- Itung NIAP nya
     }
     float countNIAP(List<Integer> SearchResult,int queryID){
         int relDoc = 0;
