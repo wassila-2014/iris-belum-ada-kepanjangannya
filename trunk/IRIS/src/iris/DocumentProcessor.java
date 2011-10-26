@@ -83,7 +83,6 @@ public class DocumentProcessor {
             dis = new DataInputStream(bis);
 
             while (dis.available()!=0){
-                System.out.println("tes");
                 text = new DataInputStream(fin).readLine();
                 if (dis.available()!=0 && text.compareTo("")!=0)
                     jenistext = this.GetTextProperty(text);
