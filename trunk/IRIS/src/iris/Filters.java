@@ -45,7 +45,7 @@ public class Filters {
         
         for (i=0; i<InFQuerySize; ++i) {
             String queryTermNow = InFQuery.get(i).term;
-            for (j=0; i<InFDocSize; ++j) {
+            for (j=0; j<InFDocSize; ++j) {
                 String docTermNow = InFDoc.get(j).term;
                 //Kalo term queryTermNow = docTermNow, tambahin ke result;
                 if (queryTermNow.equals(docTermNow)) {
