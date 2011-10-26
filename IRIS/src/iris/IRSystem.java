@@ -10,6 +10,7 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -26,7 +27,8 @@ public class IRSystem {
     /************ KOMPONEN-KOMPONEN UTAMA DALAM IR SYSTEM *************/
     HashMap<Integer, Document> Doc;// <docID, dokumen yang berasosiasi>
     HashMap<Integer, String> Q_test; // queryID, isi query
-    Vector<RelJud> RJ;
+    HashMap<RelJud, Boolean> RJ; // daftar Relevant Judgement
+    ArrayList<Integer> RJSize;  //jumlah dokumen relevan per query
 
     HashMap<String, Boolean> Stopwords;
 
@@ -354,15 +356,33 @@ public class IRSystem {
 
     void BacaRJ(String filename) {
         try {
-            RJ = new Vector<RelJud>();
+            RJ = new HashMap<RelJud, Boolean>();
+            RJSize = new ArrayList<Integer>();
+
             FileInputStream fstream = new FileInputStream(filename);
             DataInputStream in = new DataInputStream(fstream);
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             String strLine;
             String[] temp;
+            int queryID = 0;
+            int docID = 0;
+//            int currQID = -1;
+//            int relQID = 0;
             while ((strLine = br.readLine()) != null) {
-                temp = strLine.split(" ", 2);
-                RJ.add(new RelJud(Integer.parseInt(temp[0]),Integer.parseInt(temp[1])));
+                temp = strLine.split(" ");
+                queryID = Integer.parseInt(temp[0]);
+                docID = Integer.parseInt(temp[1]);
+                RJ.put(new RelJud(queryID,docID),true);
+//                if (currQID != queryID)
+//                {
+//                    currQID = queryID;
+//                    RJSize.add(relQID);
+//                    relQID = 0;
+//                }
+//                else
+//                {
+//                    ++relQID;
+//                }
             }
             in.close();
         } catch (Exception e) {//Catch exception if any
@@ -373,14 +393,28 @@ public class IRSystem {
     /************************** EXPERIMENT *****************************/
     //lakukan Retrieve untuk semua Query di Q_test, lalu hitung NIAP masing2
 
-    float countNIAP(Vector<Integer> SearchResult){
+    float countNIAP(Vector<Integer> SearchResult,int queryID){
         float NIAP = 0;
+        int relDoc = 0;
+        int retrieved = SearchResult.size();
+        
+            float sum = 0;
+            for (int i = 1; i <= retrieved; ++i) {
+                if (RJ.get(new RelJud(queryID, SearchResult.get(i)))) {
+                    relDoc++;
+                    sum += relDoc / (float) i;
+                }
+            }
 
-        //membandingkan search result dengan RJ, lalu hitung NIAPnya
-
-        return NIAP;
+        if (relDoc > 0)
+            return sum/(float) relDoc;
+        else
+            return 0;
     }
 
     /*******************************************************************/
+    public static void main(String[] args) {
+        System.out.println("ok");
+    }
     
 }
