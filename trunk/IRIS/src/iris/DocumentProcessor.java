@@ -141,6 +141,7 @@ public class DocumentProcessor {
         DocumentProcessor tes = new DocumentProcessor();
         Document[] docs = new Document[1500];
         docs = tes.GetDocCollection("D:\\kuliah\\STBI\\Tugas 3 STBI\\doc\\cranfull.all");
+        System.out.println("Jumlah: " + docs.length);
         for (int i=1; i<200; i++){
             System.out.println("["+i+"]");
             System.out.println("title: " +docs[i].title);
