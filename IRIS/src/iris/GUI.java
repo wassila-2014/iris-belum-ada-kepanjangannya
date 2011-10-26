@@ -358,6 +358,11 @@ public class GUI extends javax.swing.JFrame {
         experiment_btn.setText("Experiment");
 
         show_if_btn.setText("Show Inverted File");
+        show_if_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_if_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout action_panelLayout = new javax.swing.GroupLayout(action_panel);
         action_panel.setLayout(action_panelLayout);
@@ -453,6 +458,11 @@ public class GUI extends javax.swing.JFrame {
     private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
         new SearchResult().setVisible(true);
     }//GEN-LAST:event_search_btnActionPerformed
+
+    private void show_if_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_if_btnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_show_if_btnActionPerformed
 
 
     /**
