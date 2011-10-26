@@ -116,9 +116,9 @@ public class DocumentProcessor {
                         if (dis.available()!=0 && text.compareTo("")!=0)
                             jenistext = this.GetTextProperty(text);
                     }
-                    System.out.println("[IDX] "+idx);
+//                    System.out.println("[IDX] "+idx);
 //                    System.out.println("[TITLE] "+dtitle);
-                    System.out.println("[CONTENT] "+dcontent);
+//                    System.out.println("[CONTENT] "+dcontent);
                     dcontent = dcontent.toLowerCase();
                     dtitle = dtitle.toLowerCase();
                     docs[idx].SetContent(dcontent);
@@ -188,7 +188,6 @@ public class DocumentProcessor {
                         if (dis.available()!=0 && text.compareTo("")!=0)
                             jenistext = this.GetTextProperty(text);
                     }
-//                    System.out.println("[TITLE] "+dtitle);
                     dcontent = dcontent.toLowerCase();
                     docs[idx].SetContent(dcontent);
 
