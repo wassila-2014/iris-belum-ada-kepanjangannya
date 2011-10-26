@@ -144,6 +144,14 @@ public class IRSystem {
         }
         time = System.currentTimeMillis() - time;
         System.out.println(" The test took " + time + " milliseconds");
+        System.out.println("**************Hasil*********************");
+        for (InvertedFile tempInF : InF) {
+            System.out.println("Term : "+tempInF.term);
+            System.out.println("Dokumen : "+tempInF.docID);
+            System.out.println("Jumlah : "+tempInF.TF);
+            System.out.println("Bobot : "+tempInF.TFWeight);
+            System.out.println("");
+        }
     }
     
     void BacaStopWord(String filename) {
