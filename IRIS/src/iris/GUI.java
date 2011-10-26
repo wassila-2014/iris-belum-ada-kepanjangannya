@@ -242,8 +242,6 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel9.setText("Relevance-Judgement");
 
-        dok_addr.setText("E:\\Workspace\\Tugas 3 STBI\\cran.all\\crandummy.all");
-
         dok_browse.setText("Browse");
         dok_browse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,8 +271,6 @@ public class GUI extends javax.swing.JFrame {
                 stopword_browseActionPerformed(evt);
             }
         });
-
-        stopword_addr.setText("E:\\Workspace\\Tugas 3 STBI\\stopword.txt");
 
         javax.swing.GroupLayout file_addr_panelLayout = new javax.swing.GroupLayout(file_addr_panel);
         file_addr_panel.setLayout(file_addr_panelLayout);
