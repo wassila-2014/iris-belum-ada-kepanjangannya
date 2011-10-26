@@ -12,6 +12,7 @@
 package iris;
 
 import iris.IRSystem;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -24,12 +25,10 @@ public class SearchResult extends javax.swing.JFrame {
 
     /** Creates new form SearchResult */
     public SearchResult() {
-        Vector<InvertedFile> InF = new Vector<InvertedFile>();
-        for(int i=0; i<200; ++i){
-            InF.add(new InvertedFile("batu", i, 14, 1));
-        }
-        showInF(InF);
+        showSearchResult();
         initComponents();
+        queryJLabel.setText('"'+GlobalVariable.queryString+'"');
+        numberJLabel.setText(""+ GlobalVariable.searchResultSimilarity.size());
     }
 
     /** This method is called from within the constructor to
@@ -49,6 +48,8 @@ public class SearchResult extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        queryJLabel = new javax.swing.JLabel();
+        numberJLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,6 +102,12 @@ public class SearchResult extends javax.swing.JFrame {
 
         jLabel3.setText("Number Of Document Retrieved :");
 
+        queryJLabel.setText("Query");
+        queryJLabel.setName("queryJLabel"); // NOI18N
+
+        numberJLabel.setText("Number");
+        numberJLabel.setName("numberJLabel"); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -108,19 +115,32 @@ public class SearchResult extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap(298, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numberJLabel))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(queryJLabel)))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jLabel2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(queryJLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(numberJLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        queryJLabel.getAccessibleContext().setAccessibleName("queryJLabel");
+        numberJLabel.getAccessibleContext().setAccessibleName("numberJLabel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,10 +180,13 @@ public class SearchResult extends javax.swing.JFrame {
         });
     }
 
-    public final void showInF(Vector<InvertedFile> InF){
-        model = new DefaultTableModel(new Object [][] {}, new String []{"term","document","TF","weight","DF"});
-        for(int i= 0; i<InF.size(); ++i){
-            model.insertRow(0,new Object[]{InF.elementAt(i).term,InF.elementAt(i).docID,InF.elementAt(i).TF,InF.elementAt(i).TFWeight});//,IRSystem.DF.get(InF.elementAt(i).term)});
+    public final void showSearchResult(){
+        model = new DefaultTableModel(new Object [][] {}, new String []{"Rank", "Judul", "Similarity"});
+        List<Integer> resultDocument = (List<Integer>) GlobalVariable.searchResultDocument;
+        List<Float> resultSimilarity = (List<Float>) GlobalVariable.searchResultSimilarity;
+        int sizeResult = resultDocument.size();
+        for(int i= 0; i<sizeResult ; ++i){
+            model.insertRow(0,new Object[]{sizeResult-i, GlobalVariable.Doc.get(resultDocument.get(i)).title, resultSimilarity.get(i)});
         }
     }
 
@@ -176,6 +199,8 @@ public class SearchResult extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel numberJLabel;
+    private javax.swing.JLabel queryJLabel;
     // End of variables declaration//GEN-END:variables
     DefaultTableModel model;
 }

@@ -55,6 +55,7 @@ public class IRSystem {
                 i++;
                 //System.out.println("aa");
             }
+            GlobalVariable.Doc = Doc;
         } catch (IOException ex) {
             Logger.getLogger(IRSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -228,7 +229,7 @@ public class IRSystem {
             }
         }
         time = System.currentTimeMillis() - time;
-        System.out.println("Query Processing took " + time + " milliseconds");
+//        System.out.println("Query Processing took " + time + " milliseconds");
 //        System.out.println("Mode weighting "+WeightBy);
 //        System.out.println("**************Hasil*********************");
 //        for (InvertedFile tempInF : InFQuery) {
@@ -269,8 +270,7 @@ public class IRSystem {
 
     /********************** RETRIEVAL PROCESS **************************/
     //Retrieve dari query InFQuery
-    List<Object> Retrieve(){
-        List<Object> result = null;
+    void Retrieve(){
         List<Integer> resultDocument;
         List<Float> resultSimilarity;
 
@@ -328,12 +328,8 @@ public class IRSystem {
 
 
         //Menghasilkan hasil retrieve dari query yang diinput, hasil diranking ke dalam vektor
-
-        result.add(resultDocument);
-        result.add(resultSimilarity);
-
-        return result;
-
+        GlobalVariable.searchResultDocument = resultDocument;
+        GlobalVariable.searchResultSimilarity = resultSimilarity;
     }
 
     /*******************************************************************/

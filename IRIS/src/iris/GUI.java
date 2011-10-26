@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -473,9 +474,11 @@ public class GUI extends javax.swing.JFrame {
     private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
         if (isIndexingDoc) {
             irs.IndexQuery(user_query.getText(), query_stemming.isSelected(), query_stopword.isSelected(), query_idf.isSelected(), query_tf.getSelectedIndex(), query_normal.isSelected());
+            irs.Retrieve();
+            GlobalVariable.queryString = user_query.getText();
             new SearchResult().setVisible(true);
         } else {
-            
+            JOptionPane.showMessageDialog(this, "Maaf, Anda belum melakukan Document Indexing! Hohoho ");
         }
     }//GEN-LAST:event_search_btnActionPerformed
 
