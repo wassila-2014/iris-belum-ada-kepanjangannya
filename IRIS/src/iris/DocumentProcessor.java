@@ -120,8 +120,14 @@ public class DocumentProcessor {
 
                 }
             }
+            Document[] dochasil = new Document[idx+1];
+            for(int i=0;i<idx+1;i++){
+                dochasil[i] = new Document(docs[i].GetTitle(), docs[i].GetContent());
+            }
 
             fin.close();
+            return dochasil;
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Document.class.getName()).log(Level.SEVERE, null, ex);
         }
