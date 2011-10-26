@@ -5,6 +5,8 @@
 
 package iris;
 
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -27,9 +29,8 @@ public class IRSystem {
     /************ KOMPONEN-KOMPONEN UTAMA DALAM IR SYSTEM *************/
     HashMap<Integer, Document> Doc;// <docID, dokumen yang berasosiasi>
     ArrayList<String> Q_test; // queryID, isi query
-    HashMap<RelJud, Boolean> RJ; // daftar Relevant Judgement
-    ArrayList<Integer> RJSize;  //jumlah dokumen relevan per query
-
+    HashMap<Point, Boolean> RJ; // daftar Relevant Judgement
+    HashMap<Integer, Integer> RelSize = new HashMap<Integer, Integer>();
     HashMap<String, Boolean> Stopwords;
 
     static Vector<InvertedFile> InF;
@@ -356,8 +357,7 @@ public class IRSystem {
 
     void BacaRJ(String filename) {
         try {
-            RJ = new HashMap<RelJud, Boolean>();
-            RJSize = new ArrayList<Integer>();
+            RJ = new HashMap<Point, Boolean>();
 
             FileInputStream fstream = new FileInputStream(filename);
             DataInputStream in = new DataInputStream(fstream);
@@ -366,23 +366,24 @@ public class IRSystem {
             String[] temp;
             int queryID = 0;
             int docID = 0;
-//            int currQID = -1;
-//            int relQID = 0;
+            int currQID = 0;
+            int relQID = 0;
             while ((strLine = br.readLine()) != null) {
                 temp = strLine.split(" ");
                 queryID = Integer.parseInt(temp[0]);
                 docID = Integer.parseInt(temp[1]);
-                RJ.put(new RelJud(queryID,docID),true);
-//                if (currQID != queryID)
-//                {
-//                    currQID = queryID;
-//                    RJSize.add(relQID);
-//                    relQID = 0;
-//                }
-//                else
-//                {
-//                    ++relQID;
-//                }
+                RJ.put(new Point(queryID,docID),true);
+                if(queryID != currQID)
+                {
+                    relQID++;
+                    RelSize.put(currQID,relQID);
+                    relQID = 0;
+                    currQID = queryID;
+                }
+                else
+                {
+                    relQID++;
+                }
             }
             in.close();
         } catch (Exception e) {//Catch exception if any
@@ -400,32 +401,48 @@ public class IRSystem {
 	//- Lakukan Retrieval Process (yang b.) untuk masing2 Query di Q_test
         float niap = 0;
         float sum = 0;
+        GlobalVariable.NIAP = new ArrayList<Float>();
         for(int i = 0; i < Q_test.size(); ++i)
         {
             IndexQuery(Q_test.get(i), isStemming, isStopWordRemoval, isUseIDF, WeightBy, isNormalisasi);
             Retrieve();
-            niap = countNIAP(GlobalVariable.searchResultDocument,i);
+            niap = countNIAP(GlobalVariable.searchResultDocument,i+1);
             GlobalVariable.NIAP.add(niap);
             sum += niap;
+            
         }
         GlobalVariable.xNIAP = sum/Q_test.size();
+        System.out.println(GlobalVariable.NIAP.get(111));
+        System.out.println("Rata2");
+        System.out.println(GlobalVariable.xNIAP);
     }
-    float countNIAP(List<Integer> SearchResult,int queryID){
-        int relDoc = 0;
-        int retrieved = SearchResult.size();
-        
-            float sum = 0;
-            for (int i = 1; i <= retrieved; ++i) {
-                if (RJ.get(new RelJud(queryID, SearchResult.get(i)))) {
-                    relDoc++;
-                    sum += relDoc / (float) i;
-                }
-            }
 
-        if (relDoc > 0)
-            return sum/(float) relDoc;
-        else
+    float countNIAP(List<Integer> SearchResult,int queryID){
+        Integer relDoc = 0;
+        Integer retrieved = SearchResult.size();
+
+        float sum = 0;
+        for (int i = 0; i < retrieved; ++i) {
+            if (RJ.get(new Point(queryID, SearchResult.get(retrieved-i-1))) != null) {
+                relDoc++;
+                sum += relDoc / (float) (i+1);
+            }
+        }
+        try
+        {
+        if (relDoc > 0) {
+            return sum / (float) RelSize.get(queryID);
+        } else {
             return 0;
+        }
+        } catch(Exception e)
+        {
+
+            System.out.println(queryID);
+            return 0;
+        }
+
+
     }
 
     /*******************************************************************/
