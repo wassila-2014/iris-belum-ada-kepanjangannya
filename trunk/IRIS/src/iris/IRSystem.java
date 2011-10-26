@@ -369,6 +369,7 @@ public class IRSystem {
             int currQID = 0;
             int relQID = 0;
             while ((strLine = br.readLine()) != null) {
+                System.out.println(strLine);
                 temp = strLine.split(" ");
                 queryID = Integer.parseInt(temp[0]);
                 docID = Integer.parseInt(temp[1]);
