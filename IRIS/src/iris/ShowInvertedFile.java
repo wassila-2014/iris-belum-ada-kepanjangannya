@@ -11,6 +11,7 @@
 
 package iris;
 
+import java.awt.event.WindowEvent;
 import java.util.Vector;
 import javax.swing.JTable;
 
@@ -44,7 +45,6 @@ public class ShowInvertedFile extends javax.swing.JFrame {
             data,
             columnNames
         ));
-
     }
 
     public ShowInvertedFile() {
@@ -52,6 +52,8 @@ public class ShowInvertedFile extends javax.swing.JFrame {
     }
 
     GUI parent = new GUI();
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -68,7 +70,7 @@ public class ShowInvertedFile extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         invfiletable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24));
         jLabel1.setText("Inverted File");
