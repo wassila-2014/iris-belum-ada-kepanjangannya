@@ -25,9 +25,9 @@ public class ShowInvertedFile extends javax.swing.JFrame {
         initComponents();
         this.parent = parent;
 
-        String[] columnNames = {"Term", "Document", "TF", "Weight", "DF"};
+        String[] columnNames = {"No.", "Term", "Document", "TF", "Weight", "DF"};
 
-        Object[][] data = new Object[IRSystem.InF.size()][5];
+        Object[][] data = new Object[IRSystem.InF.size()][6];
 //        {
 //            {IRSystem.InF.get(0).term, IRSystem.InF.get(0).docID, IRSystem.InF.get(0).TF, IRSystem.InF.get(0).TFWeight, IRSystem.DF.get(IRSystem.InF.get(0).term)},
 //            {IRSystem.InF.get(0).term, IRSystem.InF.get(0).docID, IRSystem.InF.get(0).TF, IRSystem.InF.get(0).TFWeight, IRSystem.DF.get(IRSystem.InF.get(0).term)}
@@ -36,7 +36,7 @@ public class ShowInvertedFile extends javax.swing.JFrame {
 
         for (int i=0;i<IRSystem.InF.size();i++){
             
-            Object[] row = {IRSystem.InF.get(i).term, IRSystem.InF.get(i).docID, IRSystem.InF.get(i).TF, IRSystem.InF.get(i).TFWeight, IRSystem.DF.get(IRSystem.InF.get(i).term)};
+            Object[] row = {i+1, IRSystem.InF.get(i).term, IRSystem.InF.get(i).docID, IRSystem.InF.get(i).TF, IRSystem.InF.get(i).TFWeight, IRSystem.DF.get(IRSystem.InF.get(i).term)};
             data[i] = row;
         }
 
