@@ -143,15 +143,15 @@ public class IRSystem {
         }
         time = System.currentTimeMillis() - time;
         System.out.println("Document Processing took " + time + " milliseconds");
-        System.out.println("Mode weighting "+WeightBy);
-        System.out.println("**************Hasil*********************");
-        for (InvertedFile tempInF : InF) {
-            System.out.println("Term : "+tempInF.term);
-            System.out.println("Dokumen : "+tempInF.docID);
-            System.out.println("Jumlah : "+tempInF.TF);
-            System.out.println("Bobot : "+tempInF.TFWeight);
-            System.out.println("");
-        }
+//        System.out.println("Mode weighting "+WeightBy);
+//        System.out.println("**************Hasil*********************");
+//        for (InvertedFile tempInF : InF) {
+//            System.out.println("Term : "+tempInF.term);
+//            System.out.println("Dokumen : "+tempInF.docID);
+//            System.out.println("Jumlah : "+tempInF.TF);
+//            System.out.println("Bobot : "+tempInF.TFWeight);
+//            System.out.println("");
+//        }
     }
     
     void IndexQuery(String Query, Boolean isStemming, Boolean isStopWordRemoval, Boolean isUseIDF, int WeightBy, Boolean isNormalisasi){
@@ -229,15 +229,15 @@ public class IRSystem {
         }
         time = System.currentTimeMillis() - time;
         System.out.println("Query Processing took " + time + " milliseconds");
-        System.out.println("Mode weighting "+WeightBy);
-        System.out.println("**************Hasil*********************");
-        for (InvertedFile tempInF : InFQuery) {
-            System.out.println("Term : "+tempInF.term);
-            System.out.println("Dokumen : "+tempInF.docID);
-            System.out.println("Jumlah : "+tempInF.TF);
-            System.out.println("Bobot : "+tempInF.TFWeight);
-            System.out.println("");
-        }
+//        System.out.println("Mode weighting "+WeightBy);
+//        System.out.println("**************Hasil*********************");
+//        for (InvertedFile tempInF : InFQuery) {
+//            System.out.println("Term : "+tempInF.term);
+//            System.out.println("Dokumen : "+tempInF.docID);
+//            System.out.println("Jumlah : "+tempInF.TF);
+//            System.out.println("Bobot : "+tempInF.TFWeight);
+//            System.out.println("");
+//        }
     }
     
     void BacaStopWord(String filename) {
