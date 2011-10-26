@@ -486,7 +486,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         ShowInvertedFile sif = new ShowInvertedFile(this);
         sif.show();
-        this.hide();
+        this.setEnabled(false);
     }//GEN-LAST:event_show_if_btnActionPerformed
 
     private void indexing_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexing_btnActionPerformed

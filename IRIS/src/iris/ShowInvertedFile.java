@@ -134,8 +134,9 @@ public class ShowInvertedFile extends javax.swing.JFrame {
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
+        this.parent.setEnabled(true);
         this.hide();
-        this.parent.show();
+        
     }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
