@@ -18,9 +18,12 @@ package iris;
 public class ShowInvertedFile extends javax.swing.JFrame {
 
     /** Creates new form ShowInvertedFile */
-    public ShowInvertedFile() {
+    public ShowInvertedFile(GUI parent) {
         initComponents();
+        this.parent = parent;
     }
+
+    GUI parent = new GUI();
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -58,6 +61,11 @@ public class ShowInvertedFile extends javax.swing.JFrame {
         jLabel1.setText("Inverted File");
 
         BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,6 +93,12 @@ public class ShowInvertedFile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        this.hide();
+        this.parent.show();
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
     * @param args the command line arguments
