@@ -8,7 +8,6 @@
  *
  * Created on 09 Okt 11, 16:21:16
  */
-
 package iris;
 
 import java.io.BufferedReader;
@@ -490,13 +489,15 @@ public class GUI extends javax.swing.JFrame {
         String qaddress = query_addr.getText();
         String rjaddress = rel_addr.getText();
 
-        if (qaddress == null || rjaddress == null)
-        {
+        if (qaddress == null || rjaddress == null) {
             JOptionPane.showMessageDialog(this, "Jangan lupa alamat", "Message!", ERROR);
-        }
-        else
-        {
-            irs.experiment(qaddress, rjaddress, query_stemming.isSelected(), query_stopword.isSelected(), query_idf.isSelected(), query_tf.getSelectedIndex(), query_normal.isSelected());
+        } else {
+            if (isIndexingDoc) {
+                irs.experiment(qaddress, rjaddress, query_stemming.isSelected(), query_stopword.isSelected(), query_idf.isSelected(), query_tf.getSelectedIndex(), query_normal.isSelected());
+                new NIAPShow().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Maaf, Anda belum melakukan Document Indexing! Hohoho ");
+            }
         }
     }//GEN-LAST:event_experiment_btnActionPerformed
 
@@ -504,19 +505,17 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_query_idfActionPerformed
 
-
-
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new GUI().setVisible(true);
             }
         });
     }
-    
     public Boolean isIndexingDoc = false;
     public IRSystem irs;
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -561,5 +560,4 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel title_panel;
     private javax.swing.JTextField user_query;
     // End of variables declaration//GEN-END:variables
-
 }

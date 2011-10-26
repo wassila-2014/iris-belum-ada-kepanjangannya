@@ -349,7 +349,7 @@ public class IRSystem {
                 }
                 i++;
             }
-            GlobalVariable.Doc = Doc;
+            GlobalVariable.Que = Q_test;
         } catch (IOException ex) {
             Logger.getLogger(IRSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -402,16 +402,20 @@ public class IRSystem {
         float niap = 0;
         float sum = 0;
         GlobalVariable.NIAP = new ArrayList<Float>();
+        int n=0;
         for(int i = 0; i < Q_test.size(); ++i)
         {
             IndexQuery(Q_test.get(i), isStemming, isStopWordRemoval, isUseIDF, WeightBy, isNormalisasi);
             Retrieve();
             niap = countNIAP(GlobalVariable.searchResultDocument,i+1);
             GlobalVariable.NIAP.add(niap);
-            sum += niap;
+            if(niap>-1) {
+                sum += niap;
+                n++;
+            }
             
         }
-        GlobalVariable.xNIAP = sum/Q_test.size();
+        GlobalVariable.xNIAP = sum/n;
         System.out.println(GlobalVariable.NIAP.get(111));
         System.out.println("Rata2");
         System.out.println(GlobalVariable.xNIAP);
@@ -433,7 +437,7 @@ public class IRSystem {
         if (relDoc > 0) {
             return sum / (float) RelSize.get(queryID);
         } else {
-            return 0;
+            return -1;
         }
         } catch(Exception e)
         {
