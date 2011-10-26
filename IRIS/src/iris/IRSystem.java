@@ -188,19 +188,46 @@ public class IRSystem {
 
     /********************** RETRIEVAL PROCESS **************************/
     //Retrieve dari query InFQuery
-    Vector<Integer> Retrieve(){
-        Vector<Integer> result = new Vector<Integer>(); //Vector<Integer>, Int = docID
-        Vector<Float> similarityVector = new Vector<Float>();
-        Vector<Integer> docIDList = new Vector<Integer>();
+    List<Object> Retrieve(){
+        List<Object> result = null;
+        List<Integer> resultDocument;
+        List<Float> resultSimilarity;
+
+        HashMap<Integer, Float> similarityHashmap = new HashMap<Integer, Float>();
 
         //Vektor yang udah kefilter :
         Filters filter = new Filters();
         Vector<InvertedFile> filteredInFDoc = filter.filterInFByInfQuery(InF, InFQuery);
 
-        //HItung SC semua dokumen :
+        /* HItung SC semua dokumen : */
         int filteredInFDocSize = filteredInFDoc.size();
-        
+        float init = 0.0f;
+        int i;
 
+        //Iterasi filteredInFDocSize ini :
+        for (i=0; i<filteredInFDocSize; ++i) {
+            Integer idDoc = filteredInFDoc.get(i).docID;
+            String termThisDoc = filteredInFDoc.get(i).term;
+            float bobotQueryThisTerm = filter.getTFWeightByTerm(termThisDoc, InFQuery);
+            Float SCThisTerm = filteredInFDoc.get(i).TFWeight * bobotQueryThisTerm;
+
+            Float simTemp = similarityHashmap.get(idDoc);
+
+            if (simTemp== null) {
+                Float newSC = SCThisTerm + init;
+                similarityHashmap.put(idDoc, newSC);
+            } else {
+                Float newSC = SCThisTerm + simTemp;
+                similarityHashmap.put(idDoc, newSC);
+            }
+        }
+
+        //MAsukkin ke result (udah di rank) :
+        resultDocument = Utility.sortByValueGetKey(similarityHashmap);
+        resultSimilarity = Utility.sortByValueGetValue(similarityHashmap);
+
+
+        /* Vector<Integer> docIDList = new Vector<Integer>();
         //List semua docID masukkin ke vector ListDocID;
         float init = 0.0f;
         for (Integer key : Doc.keySet()) {
@@ -214,10 +241,15 @@ public class IRSystem {
             int docID = docIDList.get(i);
             //Hitung SC untuk docID ini
             //Cari semua term yang ada di filteredInFDocSize yang punya docID = docID ini
-        }
 
-       
+
+        } */
+
+
         //Menghasilkan hasil retrieve dari query yang diinput, hasil diranking ke dalam vektor
+
+        result.add(resultDocument);
+        result.add(resultSimilarity);
 
         return result;
 
