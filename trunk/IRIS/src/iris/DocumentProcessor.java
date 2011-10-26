@@ -115,6 +115,8 @@ public class DocumentProcessor {
 //                    System.out.println("[IDX] "+idx);
 //                    System.out.println("[TITLE] "+dtitle);
 //                    System.out.println("[CONTENT] "+dcontent);
+                    dcontent = dcontent.toLowerCase();
+                    dtitle = dtitle.toLowerCase();
                     docs[idx].SetContent(dcontent);
 
                     docs[idx].SetTitle(dtitle);
