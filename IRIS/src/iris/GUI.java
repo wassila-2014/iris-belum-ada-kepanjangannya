@@ -176,6 +176,11 @@ public class GUI extends javax.swing.JFrame {
         query_tf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Raw TF", "Binary TF", "Logaritmic TF", "Augmented TF" }));
 
         query_idf.setText("IDF");
+        query_idf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                query_idfActionPerformed(evt);
+            }
+        });
 
         query_normal.setText("Normalization");
 
@@ -237,6 +242,8 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel9.setText("Relevance-Judgement");
 
+        dok_addr.setText("E:\\Workspace\\Tugas 3 STBI\\cran.all\\crandummy.all");
+
         dok_browse.setText("Browse");
         dok_browse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,6 +273,8 @@ public class GUI extends javax.swing.JFrame {
                 stopword_browseActionPerformed(evt);
             }
         });
+
+        stopword_addr.setText("E:\\Workspace\\Tugas 3 STBI\\stopword.txt");
 
         javax.swing.GroupLayout file_addr_panelLayout = new javax.swing.GroupLayout(file_addr_panel);
         file_addr_panel.setLayout(file_addr_panelLayout);
@@ -461,7 +470,12 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_stopword_browseActionPerformed
 
     private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
-        new SearchResult().setVisible(true);
+        if (isIndexingDoc) {
+            irs.IndexQuery(user_query.getText(), query_stemming.isSelected(), query_stopword.isSelected(), query_idf.isSelected(), query_tf.getSelectedIndex(), query_normal.isSelected());
+            new SearchResult().setVisible(true);
+        } else {
+            
+        }
     }//GEN-LAST:event_search_btnActionPerformed
 
     private void show_if_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_if_btnActionPerformed
@@ -472,9 +486,14 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_show_if_btnActionPerformed
 
     private void indexing_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexing_btnActionPerformed
-        IRSystem irs = new IRSystem();
+        isIndexingDoc = true;
+        irs = new IRSystem();
         irs.IndexDocument(dok_addr.getText(), dok_stemming.isSelected(), dok_stopword.isSelected(), stopword_addr.getText(), dok_idf.isSelected(), dok_tf.getSelectedIndex(), dok_normal.isSelected());
     }//GEN-LAST:event_indexing_btnActionPerformed
+
+    private void query_idfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_query_idfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_query_idfActionPerformed
 
 
     /**
@@ -487,7 +506,9 @@ public class GUI extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public Boolean isIndexingDoc = false;
+    public IRSystem irs;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel action_panel;
     private javax.swing.JPanel document_panel;

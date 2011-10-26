@@ -27,8 +27,7 @@ public class IRSystem {
     HashMap<Integer, String> Q_test; // queryID, isi query
     Vector<RelJud> RJ;
 
-    Vector<String> Stopwords; // daftar stopwords
-    HashMap<String, Boolean> Stopwords2;
+    HashMap<String, Boolean> Stopwords;
 
     static Vector<InvertedFile> InF;
     static HashMap<String, Integer> DF; //Document Frequency, banyaknya dokumen yang mengandung kata ini <kata, banyak dokumen>
@@ -58,16 +57,14 @@ public class IRSystem {
         } catch (IOException ex) {
             Logger.getLogger(IRSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
-    
-    void IndexDocument(String filename, Boolean Stemming, Boolean StopWordRemoval, String filenameStopWord, Boolean useIDF, int WeightBy, Boolean Normalisasi){
+    void IndexDocument(String filenameDocument, Boolean isStemming, Boolean isStopWordRemoval, String filenameStopWord, Boolean isUseIDF, int WeightBy, Boolean isNormalisasi){
         //generate InF dari Doc, saat pembobotan perhitungkan pilihan pengguna
         long time=System.currentTimeMillis();
-        BacaDocument(filename);
-        if (StopWordRemoval) {
-            BacaStopWord(filename);
+        BacaDocument(filenameDocument);
+        if (isStopWordRemoval) {
+            BacaStopWord(filenameStopWord);
         }
         Iterator it = Doc.keySet().iterator();
         InF = new Vector<InvertedFile>();
@@ -76,7 +73,7 @@ public class IRSystem {
             Integer key = (Integer) it.next();      // document index
             Document val = (Document) Doc.get(key); // document variable
             String ncontent;
-            if (Stemming) {                         // check for stemming
+            if (isStemming) {                         // check for stemming
                 ncontent = Stemmer.stem(val.content);
             } else {
                 ncontent = val.content;
@@ -85,7 +82,7 @@ public class IRSystem {
             String[] tempContent = ncontent.split("[ .,?!]+");      // remove tanda baca dan spasi
             HashMap<String, Integer> tempInf = new HashMap<String, Integer>();
             for (String c : tempContent) {                          // iterate for count frequency all terms in each document
-                if (StopWordRemoval && Stopwords2.containsKey(c)) {     // check for stopwordremoval
+                if (isStopWordRemoval && Stopwords.containsKey(c)) {     // check for stopwordremoval
                 } else {
                     Integer t = tempInf.put(c, 1);
                     if (t!=null) {
@@ -93,6 +90,7 @@ public class IRSystem {
                     }
                 }
             }
+            
             Integer maxTF = 0;
             Iterator tempk = tempInf.keySet().iterator();
             while(tempk.hasNext()) {                                // insert to vector inverted file
@@ -104,7 +102,7 @@ public class IRSystem {
                 if (WeightBy==1)    // default weight jika yg dipilih binary TF
                     tempWeight = 1;
                 else if (WeightBy==2) // log tf
-                    tempWeight = (float) (1 + Math.log(tempWeight));
+                    tempWeight = (float) (1 + Math.log10(tempWeight));
                 InvertedFile ivf = new InvertedFile(tempKey, key, tempValue, tempWeight);
                 InF.add(ivf);
                 // tambahkan perhitungan DF
@@ -123,19 +121,19 @@ public class IRSystem {
         }
         
         // perhitungan IDF
-        if (useIDF) {
+        if (isUseIDF) {
             for (InvertedFile tempInF : InF) {
-                tempInF.TFWeight = (float) (tempInF.TFWeight * Math.log(Doc.size()/DF.get(tempInF.term)));
+                tempInF.TFWeight = (float) (tempInF.TFWeight * Math.log10((float)Doc.size()/DF.get(tempInF.term)));
             }
         }
         // perhitungan Normalisasi
-        if (Normalisasi) {
+        if (isNormalisasi) {
             HashMap<Integer, Float> vectorDocumentValue = new HashMap<Integer, Float>();
             for (InvertedFile tempInF : InF) {
                 Float tempSquareVal = tempInF.TFWeight;
-                Float tempValueSquare = vectorDocumentValue.put(tempInF.docID, tempSquareVal);
+                Float tempValueSquare = vectorDocumentValue.put(tempInF.docID, tempSquareVal*tempSquareVal);
                 if (tempValueSquare!=null) {
-                    vectorDocumentValue.put(tempInF.docID, tempSquareVal+tempValueSquare);
+                    vectorDocumentValue.put(tempInF.docID, tempSquareVal*tempSquareVal+tempValueSquare);
                 }
             }
             for (InvertedFile tempInF : InF) {
@@ -143,9 +141,96 @@ public class IRSystem {
             }
         }
         time = System.currentTimeMillis() - time;
-        System.out.println(" The test took " + time + " milliseconds");
+        System.out.println("Document Processing took " + time + " milliseconds");
+        System.out.println("Mode weighting "+WeightBy);
         System.out.println("**************Hasil*********************");
         for (InvertedFile tempInF : InF) {
+            System.out.println("Term : "+tempInF.term);
+            System.out.println("Dokumen : "+tempInF.docID);
+            System.out.println("Jumlah : "+tempInF.TF);
+            System.out.println("Bobot : "+tempInF.TFWeight);
+            System.out.println("");
+        }
+    }
+    
+    void IndexQuery(String Query, Boolean isStemming, Boolean isStopWordRemoval, Boolean isUseIDF, int WeightBy, Boolean isNormalisasi){
+        //generate InF dari Doc, saat pembobotan perhitungkan pilihan pengguna
+        long time=System.currentTimeMillis();
+        Iterator it = Doc.keySet().iterator();
+        InFQuery = new Vector<InvertedFile>();
+        
+        Document val = new Document("Query", Query); // document variable
+        String ncontent;
+        if (isStemming) {                         // check for stemming
+            ncontent = Stemmer.stem(val.content);
+        } else {
+            ncontent = val.content;
+        }
+
+        String[] tempContent = ncontent.split("[ .,?!]+");      // remove tanda baca dan spasi
+        HashMap<String, Integer> tempInf = new HashMap<String, Integer>();
+        for (String c : tempContent) {                          // iterate for count frequency all terms in each document
+            if (isStopWordRemoval && Stopwords.containsKey(c)) {     // check for stopwordremoval
+            } else {
+                Integer t = tempInf.put(c, 1);
+                if (t!=null) {
+                    tempInf.put(c, t+1);
+                }
+            }
+        }
+
+        Integer maxTF = 0;
+        Iterator tempk = tempInf.keySet().iterator();
+        while(tempk.hasNext()) {                                // insert to vector inverted file
+            String tempKey = (String) tempk.next();
+            Integer tempValue = (Integer)tempInf.get(tempKey);
+            if (tempValue>maxTF)        // max tf untuk perhitungan augmented TF
+                maxTF = tempValue;
+            float tempWeight = tempValue;                               // default weight raw TF, pembobotan dilakukan setelah semua dihitung
+            if (WeightBy==1)    // default weight jika yg dipilih binary TF
+                tempWeight = 1;
+            else if (WeightBy==2) // log tf
+                tempWeight = (float) (1 + Math.log10(tempWeight));
+            InvertedFile ivf = new InvertedFile(tempKey, -1, tempValue, tempWeight);
+            InFQuery.add(ivf);
+        }
+        // perhitungan augmented TF
+        if (WeightBy==3) {
+            for (InvertedFile tempInF : InFQuery) {
+                if (tempInF.docID==-1) {
+                    tempInF.TFWeight = (float) (0.5 + (0.5*tempInF.TFWeight)/maxTF);
+                }
+            }
+        }
+        
+        // perhitungan IDF
+        if (isUseIDF) {
+            for (InvertedFile tempInF : InFQuery) {
+                if (DF.containsKey(tempInF.term))
+                    tempInF.TFWeight = (float) (tempInF.TFWeight * Math.log10((float)Doc.size()/DF.get(tempInF.term)));
+                else
+                    tempInF.TFWeight = 0;
+            }
+        }
+        // perhitungan Normalisasi
+        if (isNormalisasi) {
+            HashMap<Integer, Float> vectorDocumentValue = new HashMap<Integer, Float>();
+            for (InvertedFile tempInF : InFQuery) {
+                Float tempSquareVal = tempInF.TFWeight;
+                Float tempValueSquare = vectorDocumentValue.put(tempInF.docID, tempSquareVal*tempSquareVal);
+                if (tempValueSquare!=null) {
+                    vectorDocumentValue.put(tempInF.docID, tempSquareVal*tempSquareVal+tempValueSquare);
+                }
+            }
+            for (InvertedFile tempInF : InFQuery) {
+                tempInF.TFWeight = (float) (tempInF.TFWeight/(Math.sqrt(vectorDocumentValue.get(tempInF.docID))));
+            }
+        }
+        time = System.currentTimeMillis() - time;
+        System.out.println("Query Processing took " + time + " milliseconds");
+        System.out.println("Mode weighting "+WeightBy);
+        System.out.println("**************Hasil*********************");
+        for (InvertedFile tempInF : InFQuery) {
             System.out.println("Term : "+tempInF.term);
             System.out.println("Dokumen : "+tempInF.docID);
             System.out.println("Jumlah : "+tempInF.TF);
@@ -157,7 +242,7 @@ public class IRSystem {
     void BacaStopWord(String filename) {
         try {
             //Stopwords = new Vector<String>();
-            Stopwords2 = new HashMap<String, Boolean> ();
+            Stopwords = new HashMap<String, Boolean> ();
             // Open the file that is the first 
             // command line parameter
             FileInputStream fstream = new FileInputStream(filename);
@@ -169,18 +254,13 @@ public class IRSystem {
             while ((strLine = br.readLine()) != null) {
                 // Print the content on the console
                 //Stopwords.add(strLine.replaceAll("[^a-zA-Z]", ""));
-                Stopwords2.put(strLine.replaceAll("[^a-zA-Z]", ""), Boolean.TRUE);
+                Stopwords.put(strLine.toLowerCase().replaceAll("[^a-z]", ""), Boolean.TRUE);
             }
             //Close the input stream
             in.close();
         } catch (Exception e) {//Catch exception if any
             System.err.println("Error: " + e.getMessage());
         }
-    }
-    
-    String stopWordRemoval(String content) {
-        
-        return new String();
     }
 
     /*******************************************************************/
