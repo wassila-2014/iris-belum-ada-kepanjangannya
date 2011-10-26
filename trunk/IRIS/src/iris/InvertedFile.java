@@ -23,5 +23,5 @@ public class InvertedFile {
         docID = id;
         TF = tfr;
         TFWeight = tfw;
-    }
+    } 
 }

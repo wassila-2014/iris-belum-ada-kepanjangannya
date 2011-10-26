@@ -24,6 +24,18 @@ public class Filters {
         return result;
     }
 
+    float getTFWeightByTerm(String term, Vector<InvertedFile> input) {
+        Boolean found = false;
+        
+
+        for (int i=0; i < input.size(); ++i) {
+            if (term.equals(input.get(i).term)) {
+                return input.get(i).TFWeight;
+            }
+        }
+
+        return 0.0f;
+    }
     Vector<InvertedFile> filterInFByInfQuery(Vector<InvertedFile> InFDoc, Vector<InvertedFile> InFQuery) {
         Vector<InvertedFile> result = new Vector<InvertedFile>();
 
