@@ -85,27 +85,23 @@ public class GUI extends javax.swing.JFrame {
 
         title_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36));
-        jLabel1.setText("IRIS (belum ada kepanjangannya)");
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Workspace\\Tugas 3 STBI\\iris.jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout title_panelLayout = new javax.swing.GroupLayout(title_panel);
         title_panel.setLayout(title_panelLayout);
         title_panelLayout.setHorizontalGroup(
             title_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(title_panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(4, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, Short.MAX_VALUE)
         );
         title_panelLayout.setVerticalGroup(
             title_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(title_panelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(title_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 563, -1));
+        getContentPane().add(title_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 560, 100));
 
         document_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -208,7 +204,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(query_stopword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(query_stemming, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(query_tf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         query_panelLayout.setVerticalGroup(
             query_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +226,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        getContentPane().add(query_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 119, -1, -1));
+        getContentPane().add(query_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 119, 280, -1));
 
         file_addr_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -284,32 +280,29 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(file_addr_panelLayout.createSequentialGroup()
-                                .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
                                 .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(file_addr_panelLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(query_addr, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(dok_addr, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, file_addr_panelLayout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addComponent(rel_addr, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rel_addr, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(query_addr, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(dok_addr, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)))))
                         .addGap(18, 18, 18)
                         .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dok_browse)
                             .addComponent(query_browse)
-                            .addComponent(rel_browse))
-                        .addContainerGap(48, Short.MAX_VALUE))
+                            .addComponent(rel_browse)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, file_addr_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                        .addGap(9, 9, 9)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(stopword_addr, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(stopword_browse)
-                        .addGap(50, 50, 50))))
+                        .addComponent(stopword_browse)))
+                .addGap(65, 65, 65))
         );
         file_addr_panelLayout.setVerticalGroup(
             file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,23 +316,21 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(query_browse)
-                            .addComponent(query_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(file_addr_panelLayout.createSequentialGroup()
-                        .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(dok_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)))
+                            .addComponent(query_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
+                    .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(dok_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rel_browse)
-                    .addComponent(rel_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(rel_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(file_addr_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stopword_browse)
+                    .addComponent(jLabel12)
                     .addComponent(stopword_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(stopword_browse))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -388,22 +379,19 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(action_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(action_panelLayout.createSequentialGroup()
-                        .addGroup(action_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(action_panelLayout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(user_query, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(search_btn))
-                            .addComponent(jLabel10))
-                        .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(user_query, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addComponent(search_btn))
+                    .addComponent(jLabel10)
                     .addGroup(action_panelLayout.createSequentialGroup()
                         .addComponent(indexing_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(show_if_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(experiment_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
+                        .addComponent(show_if_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                        .addGap(22, 22, 22)
+                        .addComponent(experiment_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44))
         );
         action_panelLayout.setVerticalGroup(
             action_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,16 +400,16 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(action_panelLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(action_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(indexing_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(experiment_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
+                        .addComponent(indexing_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(action_panelLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(show_if_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(action_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(experiment_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                            .addComponent(show_if_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(action_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(user_query, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
+                    .addComponent(user_query, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(search_btn))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -493,6 +481,7 @@ public class GUI extends javax.swing.JFrame {
         isIndexingDoc = true;
         irs = new IRSystem();
         irs.IndexDocument(dok_addr.getText(), dok_stemming.isSelected(), dok_stopword.isSelected(), stopword_addr.getText(), dok_idf.isSelected(), dok_tf.getSelectedIndex(), dok_normal.isSelected());
+        JOptionPane.showMessageDialog(this, "Indexing Selesai.");
     }//GEN-LAST:event_indexing_btnActionPerformed
 
     private void experiment_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_experiment_btnActionPerformed
