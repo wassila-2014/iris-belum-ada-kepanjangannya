@@ -12,7 +12,7 @@ public class InvertedFile {
 
     //hasil indexing
     public String term;//suatu kata
-    public Integer docID;//di dokumen mana, berasosiasi ke varabel Doc
+    public Integer docID;//di dokumen mana, berasosiasi ke variabel Doc
     public int TF; //banyak kata term yang muncul di dokumen docID
     public int TFWeight; //bobot kata term di dokumen docID
 
