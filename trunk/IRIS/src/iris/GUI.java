@@ -498,13 +498,16 @@ public class GUI extends javax.swing.JFrame {
     private void experiment_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_experiment_btnActionPerformed
         // TODO :
         //- Baca file queries, simpen ke variabel Q_test
-        String address = query_addr.getText();
-        if (address == null)
+        String qaddress = query_addr.getText();
+        String rjaddress = rel_addr.getText();
+
+        if (qaddress == null || rjaddress == null)
         {
-            JOptionPane.showMessageDialog(this, "Jangan lupa alamat query", "Message!", ERROR);
+            JOptionPane.showMessageDialog(this, "Jangan lupa alamat", "Message!", ERROR);
         }
         else
         {
+            irs.experiment(qaddress, rjaddress, query_stemming.isSelected(), query_stopword.isSelected(), query_idf.isSelected(), query_tf.getSelectedIndex(), query_normal.isSelected());
         }
     }//GEN-LAST:event_experiment_btnActionPerformed
 
