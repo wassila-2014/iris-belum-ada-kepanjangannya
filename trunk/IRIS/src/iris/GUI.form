@@ -414,9 +414,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="dok_addr">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E:\Workspace\Tugas 3 STBI\cran.all\crandummy.all"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="dok_browse">
           <Properties>
@@ -460,9 +457,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="stopword_addr">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="E:\Workspace\Tugas 3 STBI\stopword.txt"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
