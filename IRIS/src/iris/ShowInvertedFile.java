@@ -23,6 +23,10 @@ public class ShowInvertedFile extends javax.swing.JFrame {
         this.parent = parent;
     }
 
+    public ShowInvertedFile() {
+        initComponents();
+    }
+
     GUI parent = new GUI();
 
     /** This method is called from within the constructor to
