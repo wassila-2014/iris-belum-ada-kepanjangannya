@@ -5,6 +5,14 @@
 
 package iris;
 
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Hendra
@@ -20,7 +28,22 @@ public class Document {
         content = ctn;
     }
 
-    public void ReadDocCollection(String lokasi){
-        
+    public void SetTitle (String text){
+        this.title = text;
     }
+
+    public void SetContent (String content){
+        this.content = content;
+    }
+
+    public String GetContent (){
+        return this.content;
+    }
+
+    public String GetTitle(){
+        return this.title;
+    }
+
+
+
 }
