@@ -11,6 +11,11 @@
 
 package iris;
 
+import iris.IRSystem;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author User
@@ -19,6 +24,11 @@ public class SearchResult extends javax.swing.JFrame {
 
     /** Creates new form SearchResult */
     public SearchResult() {
+        Vector<InvertedFile> InF = new Vector<InvertedFile>();
+        for(int i=0; i<200; ++i){
+            InF.add(new InvertedFile("batu", i, 14, 1));
+        }
+        showInF(InF);
         initComponents();
     }
 
@@ -34,6 +44,8 @@ public class SearchResult extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        InF_scrollbar = new javax.swing.JScrollPane();
+        InF_Table = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -64,15 +76,25 @@ public class SearchResult extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        InF_Table.setModel(model
+        );
+        InF_scrollbar.setViewportView(InF_Table);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(InF_scrollbar, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(InF_scrollbar, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabel2.setText("Query : ");
@@ -105,15 +127,11 @@ public class SearchResult extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -142,7 +160,16 @@ public class SearchResult extends javax.swing.JFrame {
         });
     }
 
+    public final void showInF(Vector<InvertedFile> InF){
+        model = new DefaultTableModel(new Object [][] {}, new String []{"term","document","TF","weight","DF"});
+        for(int i= 0; i<InF.size(); ++i){
+            model.insertRow(0,new Object[]{InF.elementAt(i).term,InF.elementAt(i).docID,InF.elementAt(i).TF,InF.elementAt(i).TFWeight});//,IRSystem.DF.get(InF.elementAt(i).term)});
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable InF_Table;
+    private javax.swing.JScrollPane InF_scrollbar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -150,5 +177,5 @@ public class SearchResult extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
-
+    DefaultTableModel model;
 }
