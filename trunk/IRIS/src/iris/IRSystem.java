@@ -394,7 +394,6 @@ public class IRSystem {
     //lakukan Retrieve untuk semua Query di Q_test, lalu hitung NIAP masing2
 
     float countNIAP(Vector<Integer> SearchResult,int queryID){
-        float NIAP = 0;
         int relDoc = 0;
         int retrieved = SearchResult.size();
         
